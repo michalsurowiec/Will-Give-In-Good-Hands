@@ -1,6 +1,8 @@
 package pl.coderslab.charity.institution;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import pl.coderslab.charity.donation.Donation;
 
 import javax.persistence.*;
@@ -8,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+//@Data
+@Getter
+@Setter
 public class Institution {
 
     @Id
