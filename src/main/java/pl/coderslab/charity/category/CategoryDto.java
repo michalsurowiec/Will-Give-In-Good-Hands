@@ -13,4 +13,8 @@ public class CategoryDto {
     private String name;
     private List<DonationDto> donationsDto = new ArrayList<>();
 
+    public CategoryDto(Category category) {
+        this.id = category.getId();
+        this.name = category.getName();
+    }
 }

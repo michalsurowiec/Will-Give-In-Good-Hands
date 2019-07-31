@@ -1,4 +1,4 @@
-INSERT INTO category VALUES (null, 'Zabawki'), (null, 'Ubrania'), (null, 'Buty')
+INSERT INTO category VALUES (null, 'ubrania, które nadają się do ponownego użycia'), (null, 'ubrania, do wyrzucenia'), (null, 'zabawki'), (null, 'książki'), (null, 'inne')
 
 INSERT INTO institution VALUES (null, 'Pomoc dzieciom z ubogich rodzin.', 'Dbam o Zdrowie'), (null, 'Pomoc wybudzaniu dzieci ze śpiączki.', 'A kogo'), (null, 'Pomoc osobom znajdującym się w trudnej sytuacji życiowej.', 'Dla dzieci'), (null, 'Pomoc dla osób nie posiadających miejsca zamieszkania', 'Bez domu')
 
