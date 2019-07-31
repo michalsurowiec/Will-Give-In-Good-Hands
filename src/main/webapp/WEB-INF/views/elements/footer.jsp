@@ -1,5 +1,4 @@
-<%--TODO Polskie znaki nie działają--%>
-<%--TODO Nie wyświetlają się podłączone grafiki--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>\
 <footer>
     <div class="contact">
         <h2>Skontaktuj się z nami</h2>

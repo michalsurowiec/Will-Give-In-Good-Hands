@@ -1,4 +1,4 @@
-<%--TODO Polskie znaki nie działają--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>\
 <nav class="container container--70">
     <ul class="nav--actions">
         <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
@@ -20,7 +20,6 @@
         <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
         <li><a href="#" class="btn btn--without-border">O nas</a></li>
         <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-<%--        TODO Po dodaniu funkcji logowania stworzyć if, który będzie wyświetlał poniższe tylko dla zalogowanych--%>
         <li><a href="#" class="btn btn--without-border">Przekaż dary</a></li>
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
     </ul>
