@@ -12,4 +12,9 @@ public class DonationService {
     public DonationService(DonationRepository donationRepository) {
         this.donationRepository = donationRepository;
     }
+
+    public int totalQuantity(){
+        return donationRepository.sumQuantity();
+    }
+
 }
