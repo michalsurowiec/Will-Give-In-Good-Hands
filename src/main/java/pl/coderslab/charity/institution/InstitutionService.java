@@ -23,4 +23,8 @@ public class InstitutionService {
         }
         return institutionDtoList;
     }
+
+    public long countInstitutions(){
+        return institutionRepository.count();
+    }
 }
