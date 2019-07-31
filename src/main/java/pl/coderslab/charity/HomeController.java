@@ -18,6 +18,7 @@ public class HomeController {
     @RequestMapping("/")
     public String homeAction(Model model){
         model.addAttribute("institutions", institutionService.findAll());
+        model.addAttribute("quantity", institutionService.totalQuantity());
         return "index";
     }
 }

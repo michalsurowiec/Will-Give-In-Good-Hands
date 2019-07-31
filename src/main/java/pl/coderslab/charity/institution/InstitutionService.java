@@ -23,4 +23,8 @@ public class InstitutionService {
         }
         return institutionDtoList;
     }
+
+    public int totalQuantity(){
+        return institutionRepository.sumQuantity();
+    }
 }
