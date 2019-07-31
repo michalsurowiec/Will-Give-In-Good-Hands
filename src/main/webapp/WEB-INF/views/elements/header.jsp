@@ -20,7 +20,7 @@
         <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
         <li><a href="#" class="btn btn--without-border">O nas</a></li>
         <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-<%--        TODO Po stworzeniu paru działających stron stworzyć if, który będzie wyświetlał poniższe tylko w index.html--%>
+<%--        TODO Po dodaniu funkcji logowania stworzyć if, który będzie wyświetlał poniższe tylko dla zalogowanych--%>
         <li><a href="#" class="btn btn--without-border">Przekaż dary</a></li>
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
     </ul>
