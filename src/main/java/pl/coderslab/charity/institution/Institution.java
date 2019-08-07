@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@Data
-@Getter
-@Setter
+@Data
 public class Institution {
 
     @Id
