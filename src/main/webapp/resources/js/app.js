@@ -163,15 +163,31 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      var categoriesJS = document.querySelectorAll("input[name='categoriesId']")
+      //Lista kategorii, wielokrotny wybór
+      var categories = document.querySelectorAll("input[name='categoriesId']")
+      //Podsumowanie, dotyczące liczby worków oraz zawartości
       var upperSummary = document.querySelectorAll("span.summary--text")
+      //Opis każdej kategorii
       var categoryDescription = document.querySelectorAll("div[data-step='1'] span.description")
-      var categorySummaryString = "";
+      //Liczba worków
+      var quantity = document.querySelector("#quantity")
+      //Lista instytucji
+      var institutions = document.querySelectorAll("input[name='institution']")
+      //Nazwy instytucji
+      var institutionsDescription = document.querySelectorAll("div.title")
 
-      categoriesJS.forEach(function (category, index) {
+      var categorySummaryString = quantity.value + " worków zawierających: "
+
+      categories.forEach(function (category, index) {
         if (category.checked) {
           categorySummaryString += categoryDescription[index].textContent + "; "
           upperSummary[0].textContent = categorySummaryString
+        }
+      })
+
+      institutions.forEach(function (institution, index) {
+        if (institution.checked) {
+          upperSummary[1].textContent = institutionsDescription[index].textContent
         }
       })
       // TODO: get data from inputs and show them in summary
