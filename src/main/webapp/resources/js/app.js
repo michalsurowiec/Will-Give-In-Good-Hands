@@ -163,6 +163,17 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
+      var categoriesJS = document.querySelectorAll("input[name='categoriesId']")
+      var upperSummary = document.querySelectorAll("span.summary--text")
+      var categoryDescription = document.querySelectorAll("div[data-step='1'] span.description")
+      var categorySummaryString = "";
+
+      categoriesJS.forEach(function (category, index) {
+        if (category.checked) {
+          categorySummaryString += categoryDescription[index].textContent + "; "
+          upperSummary[0].textContent = categorySummaryString
+        }
+      })
       // TODO: get data from inputs and show them in summary
     }
 

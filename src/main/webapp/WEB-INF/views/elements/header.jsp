@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>\
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="container container--70">
     <ul class="nav--actions">
         <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>

@@ -75,8 +75,8 @@
             <c:forEach items="${categories}" var="category">
               <div class="form-group form-group--checkbox">
                 <label>
-                  <input type="checkbox" name="categories" value="clothes-to-use"/>
                   <span class="checkbox"><form:checkbox path="categoriesId" value = "${category.id}"/></span>
+<%--                  <input type="checkbox" name="categories" value="clothes-to-use"/>--%>
                   <span class="description">${category.name}</span>
                 </label>
               </div>
@@ -190,16 +190,12 @@
                 <ul>
                   <li>
                     <span class="icon icon-bag"></span>
-                    <span class="summary--text"
-                      >4 worki ubrań w dobrym stanie dla dzieci</span
-                    >
+                    <span class="summary--text">4 worki </span>
                   </li>
 
                   <li>
                     <span class="icon icon-hand"></span>
-                    <span class="summary--text"
-                      >Dla fundacji "Mam marzenie" w Warszawie</span
-                    >
+                    <span class="summary--text">Dla fundacji "Mam marzenie" w Warszawie</span>
                   </li>
                 </ul>
               </div>
