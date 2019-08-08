@@ -198,7 +198,6 @@ document.addEventListener("DOMContentLoaded", function() {
       address.forEach(function (addressElement, index) {
         lowerSummary[index].textContent = addressElement.children[0].value
       })
-      // TODO: get data from inputs and show them in summary
     }
 
   }
