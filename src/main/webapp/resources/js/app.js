@@ -176,6 +176,10 @@ document.addEventListener("DOMContentLoaded", function() {
       //Nazwy instytucji
       var institutionsDescription = document.querySelectorAll("div.title")
 
+      var address = document.querySelectorAll("div[data-step='4'] label")
+      var lowerSummary = document.querySelectorAll("div.form-section--columns li")
+
+      //liczba worków
       var categorySummaryString = quantity.value + " worków zawierających: "
 
       categories.forEach(function (category, index) {
@@ -189,6 +193,10 @@ document.addEventListener("DOMContentLoaded", function() {
         if (institution.checked) {
           upperSummary[1].textContent = institutionsDescription[index].textContent
         }
+      })
+
+      address.forEach(function (addressElement, index) {
+        lowerSummary[index].textContent = addressElement.children[0].value
       })
       // TODO: get data from inputs and show them in summary
     }
