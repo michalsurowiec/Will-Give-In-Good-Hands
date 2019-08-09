@@ -34,7 +34,7 @@ public class DonationController {
     @PostMapping(path = "/form")
     private String saveForm(@ModelAttribute("donation") DonationDto donationDto){
         donationService.saveDonation(donationDto);
-        return "redirect:/";
+        return "form-confirmation";
     }
 
 }
