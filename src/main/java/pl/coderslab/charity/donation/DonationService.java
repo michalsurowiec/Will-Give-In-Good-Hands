@@ -29,7 +29,13 @@ public class DonationService {
         donation.setQuantity(donationDto.getQuantity());
         donation.setCategories(categoryRepository.findAllById(donationDto.getCategoriesId()));
         donation.setInstitution(institutionRepository.findById(donationDto.getInstitution()).get());
-        
+        donation.setStreet(donationDto.getStreet());
+        donation.setCity(donationDto.getCity());
+        donation.setZipCode(donationDto.getZipCode());
+        donation.setPickUpDate(donationDto.getPickUpDate());
+        donation.setPickUpTime(donationDto.getPickUpTime());
+        donation.setPickUpComment(donationDto.getPickUpComment());
+        donationRepository.save(donation);
     }
 
 }

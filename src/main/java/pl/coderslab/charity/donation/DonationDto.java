@@ -1,6 +1,7 @@
 package pl.coderslab.charity.donation;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.category.CategoryDto;
 import pl.coderslab.charity.category.CategoryRepository;
 import pl.coderslab.charity.category.CategoryService;
@@ -22,6 +23,7 @@ public class DonationDto {
     private String street;
     private String city;
     private String zipCode;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private String pickUpComment;
