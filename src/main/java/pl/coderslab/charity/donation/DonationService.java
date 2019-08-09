@@ -24,6 +24,10 @@ public class DonationService {
         return donationRepository.sumQuantity();
     }
 
+    public Long countDonations() {
+        return donationRepository.count();
+    }
+
     public void saveDonation(DonationDto donationDto){
         Donation donation = new Donation();
         donation.setQuantity(donationDto.getQuantity());

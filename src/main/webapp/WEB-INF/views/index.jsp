@@ -34,14 +34,16 @@
 
             <h3>Oddanych worków</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
-                tempora!</p>
+                tempora!
+            </p>
         </div>
 
         <div class="stats--item">
-            <em>${institutionsQuantity}</em>
-            <h3>Wspartych organizacji</h3>
+            <em>${donationsQuantity}</em>
+            <h3>Wsparć organizacji</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
-                quam.</p>
+                quam.
+            </p>
         </div>
 
     </div>
