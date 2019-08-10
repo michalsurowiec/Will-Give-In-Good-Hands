@@ -43,7 +43,7 @@ public class HomeController {
     public String saveUser(@ModelAttribute("user") UserDto userDto){
         userService.saveUser(userDto);
         //TODO Add register-confirmation site
-        return "redirect:/";
+        return "register-confirmation";
     }
 
 }
