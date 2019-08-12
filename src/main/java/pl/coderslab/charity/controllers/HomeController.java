@@ -12,7 +12,6 @@ import pl.coderslab.charity.user.UserService;
 
 
 @Controller
-@SessionAttributes("currentUser")
 public class HomeController {
 
     private InstitutionService institutionService;
@@ -26,11 +25,10 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String homeAction(Model model, @AuthenticationPrincipal CurrentUser currentUser){
+    public String homeAction(Model model){
         model.addAttribute("institutions", institutionService.findAll());
         model.addAttribute("quantity", donationService.totalQuantity());
         model.addAttribute("donationsQuantity", donationService.countDonations());
-        model.addAttribute("currentUser", currentUser);
         return "index";
     }
 

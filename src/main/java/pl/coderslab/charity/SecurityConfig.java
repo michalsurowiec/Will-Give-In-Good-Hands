@@ -15,11 +15,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/donation/**").hasAnyRole("USER", "ADMIN")
-//                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().permitAll()
                 .and().formLogin()
-                .loginPage("/login")
-                .successForwardUrl("/")
+                .loginPage("/login").successForwardUrl("/user/main")
                 .and().logout().logoutSuccessUrl("/")
                 .permitAll();
     }
