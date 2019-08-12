@@ -75,8 +75,10 @@
             <c:forEach items="${categories}" var="category">
               <div class="form-group form-group--checkbox">
                 <label>
-                  <span class="checkbox"><form:checkbox path="categoriesId" value = "${category.id}"/></span>
-<%--                  <input type="checkbox" name="categories" value="clothes-to-use"/>--%>
+                  <input type="checkbox" name="categoriesId" value="${category.id}"/>
+                  <span class="checkbox">
+<%--                    <form:checkbox path="categoriesId" value = "${category.id}"/>--%>
+                  </span>
                   <span class="description">${category.name}</span>
                 </label>
               </div>
@@ -94,7 +96,8 @@
             <div class="form-group form-group--inline">
               <label>
                 Liczba 60l worków:
-                <form:input path="quantity"/>
+<%--                <form:input path="quantity"/>--%>
+                <input type="number" name="quantity" id="quantity"/>
               </label>
             </div>
 
@@ -113,8 +116,10 @@
             <c:forEach items="${institutions}" var="institution">
             <div class="form-group form-group--checkbox">
               <label>
-<%--                <input type="radio" name="organization" value="old" />--%>
-                <span class="checkbox radio"><form:radiobutton path="institution" value="${institution.id}"/></span>
+                <input type="radio" name="institution" value="${institution.id}" />
+                <span class="checkbox radio">
+<%--                  <form:radiobutton path="institution" value="${institution.id}"/>--%>
+                </span>
                 <span class="description">
                   <div class="title">Fundacja “${institution.name}”</div>
                   <div class="subtitle">
@@ -151,7 +156,7 @@
                     Kod pocztowy <form:input path="zipCode" /></label>
                 </div>
 
-<%--                Nie widzę nigdzie numeru telefonu, także na razie usypiam ten fragment.--%>
+<%--                Leaving in case of adding a phone number to database.--%>
 <%--                <div class="form-group form-group--inline">--%>
 <%--                  <label>--%>
 <%--                    Numer telefonu <input type="phone" name="phone" />--%>
@@ -195,7 +200,7 @@
 
                   <li>
                     <span class="icon icon-hand"></span>
-                    <span class="summary--text">Dla fundacji "Mam marzenie" w Warszawie</span>
+                    <span class="summary--text"></span>
                   </li>
                 </ul>
               </div>
@@ -207,7 +212,7 @@
                     <li></li>
                     <li></li>
                     <li></li>
-<%--                    <li>123 456 789</li>--%>
+<%--                    <li>place for phone number</li>--%>
                   </ul>
                 </div>
 
