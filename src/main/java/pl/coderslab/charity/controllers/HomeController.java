@@ -1,14 +1,10 @@
 package pl.coderslab.charity.controllers;
 
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.CurrentUser;
 import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.institution.InstitutionService;
 import pl.coderslab.charity.user.UserDto;
@@ -16,6 +12,7 @@ import pl.coderslab.charity.user.UserService;
 
 
 @Controller
+@SessionAttributes("currentUser")
 public class HomeController {
 
     private InstitutionService institutionService;
@@ -29,14 +26,11 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String homeAction(Model model){
+    public String homeAction(Model model, @AuthenticationPrincipal CurrentUser currentUser){
         model.addAttribute("institutions", institutionService.findAll());
         model.addAttribute("quantity", donationService.totalQuantity());
         model.addAttribute("donationsQuantity", donationService.countDonations());
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        if (!(auth instanceof AnonymousAuthenticationToken)) {
-//            System.out.println("UDAŁO SIĘ");
-//        }
+        model.addAttribute("currentUser", currentUser);
         return "index";
     }
 
@@ -49,7 +43,6 @@ public class HomeController {
     @PostMapping(path = "/register")
     public String saveUser(@ModelAttribute("user") UserDto userDto){
         userService.saveUser(userDto);
-        //TODO Add register-confirmation site
         return "register-confirmation";
     }
 

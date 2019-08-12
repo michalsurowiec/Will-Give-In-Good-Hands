@@ -20,6 +20,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Override
     public UserDetails loadUserByUsername(String email) {
         User user = userRepository.findByEmail(email);

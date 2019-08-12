@@ -7,10 +7,10 @@
         <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
         <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </sec:authorize>
-<%--        TODO Po dodaniu funkcji logowania tworzyć if, który w zależności od tego czy osoba jest zalogowana czy nie będzie pokazywał odpowiedni element headera--%>
         <sec:authorize access="isAuthenticated()">
         <li class="logged-user">
-            <sec:authentication property="name"/>
+            Cześć ${currentUser.user.name}!
+<%--            <sec:authentication property="name"/>--%>
             <ul class="dropdown">
                 <li><a href="#">Profil</a></li>
                 <li><a href="#">Ustawienia</a></li>
