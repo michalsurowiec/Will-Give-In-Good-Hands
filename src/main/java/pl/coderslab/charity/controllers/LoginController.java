@@ -25,4 +25,9 @@ public class LoginController
         }
         return "redirect:/login";
     }
+
+    @GetMapping(path = "/deniedAccess")
+    public String deniedAcces(){
+        return "access-denied";
+    }
 }

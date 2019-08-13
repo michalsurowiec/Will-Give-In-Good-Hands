@@ -21,7 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
                 .loginPage("/login").successForwardUrl("/user/main")
                 .and().logout().logoutSuccessUrl("/")
-                .permitAll();
+                .permitAll()
+                .and().exceptionHandling().accessDeniedPage("/deniedAccess");
     }
 
     @Bean
