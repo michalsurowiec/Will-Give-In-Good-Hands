@@ -19,7 +19,7 @@
       <h2>Lista adminów</h2>
 
       <div class="help--slides active" data-id="1">
-
+        <a href="/admin/adminCRUD/create" class="btn btn--large btn--highlighted">Stwórz admina</a>
         <ul class="help--slides-items">
           <c:forEach items="${admins}" var="admin">
             <li>

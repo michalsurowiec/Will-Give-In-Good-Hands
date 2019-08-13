@@ -40,7 +40,7 @@ public class HomeController {
 
     @PostMapping(path = "/register")
     public String saveUser(@ModelAttribute("user") UserDto userDto){
-        userService.saveUser(userDto);
+        userService.saveUser(userDto, "ROLE_USER");
         return "register-confirmation";
     }
 

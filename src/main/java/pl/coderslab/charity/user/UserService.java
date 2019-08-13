@@ -23,14 +23,13 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
-    public void saveUser (UserDto userDto){
+    public void saveUser (UserDto userDto, String role){
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
-        user.setRoles(new HashSet<Role>(Arrays.asList(roleRepository.findByName("ROLE_USER"))));
-        System.out.println("UWAGA - " + roleRepository.findByName("ROLE_USER").getId() + ", " + roleRepository.findByName("ROLE_USER").getName());
+        user.setRoles(new HashSet<Role>(Arrays.asList(roleRepository.findByName(role))));
         userRepository.save(user);
     }
 
