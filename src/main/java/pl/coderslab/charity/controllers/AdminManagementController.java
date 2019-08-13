@@ -40,4 +40,10 @@ public class AdminManagementController {
         return "admin-create-form";
     }
 
+    @GetMapping(path = "/delete/{id}")
+    public String deleteAdmin(@PathVariable(name = "id") Long id){
+        userService.deleteUser(id);
+        return "redirect:/admin/adminCRUD/main";
+    }
+
 }
