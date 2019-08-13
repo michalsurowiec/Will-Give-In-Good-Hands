@@ -8,7 +8,10 @@ INSERT INTO donation_categories VALUES (1, 1), (2, 2), (3, 3), (4, 1), (5, 2), (
 
 INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN')
 
-# password - 123
-INSERT INTO user VALUES (null, 'michal@o2.pl', 'Michał', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec')
+# TODO delete information about passwords after everything is done
 
-INSERT INTO user_roles VALUES (1, 1), (1, 2)
+# michal@o2.pl password - 123
+# kamil@o2.pl password - 123
+INSERT INTO user VALUES (null, 'michal@o2.pl', 'Michał', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec'), (null, 'kamil@o2.pl', 'Kamil', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec')
+
+INSERT INTO user_roles VALUES (2, 1), (1, 2)
