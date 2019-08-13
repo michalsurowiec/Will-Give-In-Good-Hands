@@ -1,8 +1,6 @@
 package pl.coderslab.charity.institution;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import pl.coderslab.charity.donation.Donation;
 
 import javax.persistence.*;
