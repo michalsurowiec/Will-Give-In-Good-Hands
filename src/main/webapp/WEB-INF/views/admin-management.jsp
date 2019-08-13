@@ -15,13 +15,21 @@
       <%@ include file="elements/header.jsp"%>
     </header>
 
-    <section class="steps">
-      <h2>Panel Admina</h2>
+    <section class="help">
+      <h2>Lista adminów</h2>
 
-      <div class="steps--container">
-        <div class="steps--item">
-          <a href="/admin/adminCRUD/main" class="btn btn--small btn--highlighted">Zarządzanie administratorami</a>
-        </div>
+      <div class="help--slides active" data-id="1">
+
+        <ul class="help--slides-items">
+          <c:forEach items="${admins}" var="admin">
+            <li>
+              <div class="col">
+                <div class="title">${admin.id}. ${admin.name} ${admin.surname} ${admin.email}</div>
+<%--                <div class="subtitle"></div>--%>
+              </div>
+            </li>
+          </c:forEach>
+        </ul>
       </div>
     </section>
 

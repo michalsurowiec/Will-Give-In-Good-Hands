@@ -7,6 +7,8 @@ import pl.coderslab.charity.role.RoleRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -30,5 +32,9 @@ public class UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(roleRepository.findByName("ROLE_USER"))));
         System.out.println("UWAGA - " + roleRepository.findByName("ROLE_USER").getId() + ", " + roleRepository.findByName("ROLE_USER").getName());
         userRepository.save(user);
+    }
+
+    public List<UserDto> findAllAdmins(){
+        return userRepository.findAllByRolesEquals(roleRepository.findByName("ROLE_ADMIN")).stream().map(UserDto::new).collect(Collectors.toList());
     }
 }
