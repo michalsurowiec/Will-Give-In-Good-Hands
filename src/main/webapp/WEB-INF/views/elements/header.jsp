@@ -12,9 +12,14 @@
             Cześć ${currentUser.user.name}!
 <%--            <sec:authentication property="name"/>--%>
             <ul class="dropdown">
+                <sec:authorize access="hasRole('USER')">
                 <li><a href="/user/main">Profil</a></li>
                 <li><a href="#">Ustawienia</a></li>
                 <li><a href="#">Moje zbiórki</a></li>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ADMIN')">
+                <li><a href="/admin/main">Profil</a></li>
+                </sec:authorize>
                 <li><a href="/logout">Wyloguj</a></li>
             </ul>
         </li>
