@@ -21,6 +21,7 @@
       <div class="steps--container">
         <div class="steps--item">
           <a href="/admin/adminCRUD/main" class="btn btn--small btn--highlighted">Zarządzanie administratorami</a>
+          <a href="/admin/userCRUD/main" class="btn btn--small btn--highlighted">Zarządzanie użytkownikami</a>
         </div>
       </div>
     </section>

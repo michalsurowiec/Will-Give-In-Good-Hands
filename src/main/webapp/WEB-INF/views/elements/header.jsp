@@ -18,7 +18,9 @@
                 <li><a href="#">Moje zbiórki</a></li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ADMIN')">
-                <li><a href="/admin/main">Profil</a></li>
+                <li><a href="/admin/main">Panel Główny</a></li>
+                <li><a href="/admin/adminCRUD/main">Admini</a></li>
+                <li><a href="/admin/userCRUD/main">Użytkownicy</a></li>
                 </sec:authorize>
                 <li><a href="/logout">Wyloguj</a></li>
             </ul>
