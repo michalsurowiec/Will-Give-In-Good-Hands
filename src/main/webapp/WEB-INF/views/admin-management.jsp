@@ -24,8 +24,9 @@
           <c:forEach items="${admins}" var="admin">
             <li>
               <div class="col">
-                <div class="title">${admin.id}. ${admin.name} ${admin.surname} ${admin.email}</div>
-<%--                <div class="subtitle"></div>--%>
+                <div class="title">${admin.id}. ${admin.name} ${admin.surname} ${admin.email}
+                  <a href="/admin/adminCRUD/update/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>
+                </div>
               </div>
             </li>
           </c:forEach>

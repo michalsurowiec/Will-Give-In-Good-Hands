@@ -20,26 +20,27 @@
 
     <section class="login-page">
       <h2>Formularz admina</h2>
-      <form:form method="post" action="/admin/adminCRUD/create" modelAttribute="admin">
+      <form:form method="post" action="/admin/adminCRUD/save" modelAttribute="admin">
         <div class="form-group">
-          <form:input placeholder="Imię" path="name"/>
+          Imię: <form:input placeholder="${admin.name}" path="name"/>
         </div>
         <div class="form-group">
-          <form:input placeholder="Nazwisko" path="surname"/>
+          Nazwisko: <form:input placeholder="${admin.surname}" path="surname"/>
         </div>
         <div class="form-group">
-          <form:input placeholder="E-mail" path="email"/>
+          E-mail: <form:input placeholder="${admin.email}" path="email"/>
         </div>
         <div class="form-group">
-          <form:password placeholder="Hasło" path="password"/>
+          Hasło: <form:password placeholder="Hasło" path="password"/>
         </div>
 <%--        TODO Add a double check of password during registration--%>
 <%--        <div class="form-group">--%>
 <%--          <input type="password" name="password2" placeholder="Powtórz hasło" />--%>
 <%--        </div>--%>
+        <form:hidden path="id" value="${admin.id}"/>
 
         <div class="form-group form-group--buttons">
-          <button class="btn" type="submit">Stwórz</button>
+          <button class="btn" type="submit">Zapisz</button>
         </div>
       </form:form>
     </section>

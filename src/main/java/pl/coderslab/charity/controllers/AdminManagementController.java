@@ -2,10 +2,7 @@ package pl.coderslab.charity.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
@@ -31,10 +28,16 @@ public class AdminManagementController {
         return "admin-create-form";
     }
 
-    @PostMapping(path = "/create")
+    @PostMapping(path = "/save")
     public String saveAdmin(@ModelAttribute("admin") UserDto admin){
         userService.saveUser(admin, "ROLE_ADMIN");
         return "redirect:/admin/adminCRUD/main";
+    }
+
+    @GetMapping(path = "/update/{id}")
+    public String updateAdmin(@PathVariable(name = "id") Long id, Model model){
+        model.addAttribute("admin", userService.findById(id));
+        return "admin-create-form";
     }
 
 }

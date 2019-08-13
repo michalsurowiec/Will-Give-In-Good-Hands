@@ -22,6 +22,7 @@ public class UserDto {
     public UserDto(User user){
         this.id = user.getId();
         this.email = user.getEmail();
+        this.password = user.getPassword();
         this.name = user.getName();
         this.surname = user.getSurname();
         for (Role role : user.getRoles()){

@@ -25,8 +25,14 @@ public class UserService {
 
     public void saveUser (UserDto userDto, String role){
         User user = new User();
-        user.setEmail(userDto.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        if (userDto.getId() != null){
+            user.setId(userDto.getId());
+            if (userDto.getPassword().equals("")){
+                user.setPassword(userRepository.findById(userDto.getId()).get().getPassword());
+            }
+        }
+        user.setEmail(userDto.getEmail());
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
         user.setRoles(new HashSet<Role>(Arrays.asList(roleRepository.findByName(role))));
@@ -35,5 +41,9 @@ public class UserService {
 
     public List<UserDto> findAllAdmins(){
         return userRepository.findAllByRolesEquals(roleRepository.findByName("ROLE_ADMIN")).stream().map(UserDto::new).collect(Collectors.toList());
+    }
+
+    public UserDto findById(Long id){
+        return new UserDto(userRepository.findById(id).get());
     }
 }
