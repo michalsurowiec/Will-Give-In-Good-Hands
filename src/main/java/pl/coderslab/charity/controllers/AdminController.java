@@ -9,12 +9,10 @@ import pl.coderslab.charity.CurrentUser;
 
 @Controller
 @RequestMapping(path = "/admin")
-@SessionAttributes("currentUser")
 public class AdminController {
 
     @RequestMapping(path = "/main")
-    private String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser currentUser){
-        model.addAttribute("currentUser", currentUser);
+    private String showUserPanel(){
         return "admin-main-page";
     }
 
