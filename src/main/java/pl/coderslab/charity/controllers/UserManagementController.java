@@ -15,10 +15,10 @@ public class UserManagementController {
         this.userService = userService;
     }
 
-    //Zmienić metodę findAllAdmins w sposób pozwalający na szukanie użytkowników po ich rolach
+    //Zmienić metodę findAllAdmins w sposób pozwalający na szukanie użytkowników po ich rolach a także stworzyć JSP
     @RequestMapping(path = "/main")
     public String showAdmins(Model model){
-        model.addAttribute("users", userService.findAllAdmins());
+        model.addAttribute("users", userService.findAllUsersByRole("ROLE_USER"));
         return "admin-management";
     }
 

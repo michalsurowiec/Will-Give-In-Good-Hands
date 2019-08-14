@@ -18,7 +18,7 @@ public class AdminManagementController {
 
     @RequestMapping(path = "/main")
     public String showAdmins(Model model){
-        model.addAttribute("admins", userService.findAllAdmins());
+        model.addAttribute("admins", userService.findAllUsersByRole("ROLE_ADMIN"));
         return "admin-management";
     }
 

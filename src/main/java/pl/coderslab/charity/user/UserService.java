@@ -39,8 +39,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<UserDto> findAllAdmins(){
-        return userRepository.findAllByRolesEquals(roleRepository.findByName("ROLE_ADMIN")).stream().map(UserDto::new).collect(Collectors.toList());
+    public List<UserDto> findAllUsersByRole(String role){
+        return userRepository.findAllByRolesEquals(roleRepository.findByName(role)).stream().map(UserDto::new).collect(Collectors.toList());
     }
 
     public UserDto findById(Long id){
