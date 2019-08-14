@@ -19,7 +19,7 @@ public class UserManagementController {
     @RequestMapping(path = "/main")
     public String showAdmins(Model model){
         model.addAttribute("users", userService.findAllUsersByRole("ROLE_USER"));
-        return "admin-management";
+        return "user-management";
     }
 
 }
