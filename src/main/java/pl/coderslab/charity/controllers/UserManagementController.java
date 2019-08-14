@@ -2,7 +2,8 @@ package pl.coderslab.charity.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
 @Controller
@@ -20,6 +21,18 @@ public class UserManagementController {
     public String showAdmins(Model model){
         model.addAttribute("users", userService.findAllUsersByRole("ROLE_USER"));
         return "user-management";
+    }
+
+    @GetMapping(path = "/update/{id}")
+    public String updateUser(@PathVariable(name = "id") Long id, Model model){
+        model.addAttribute("user", userService.findById(id));
+        return "user-update-form";
+    }
+
+    @PostMapping(path = "/save")
+    public String saveAdmin(@ModelAttribute("user") UserDto user){
+        userService.saveUser(user, "ROLE_USER");
+        return "redirect:/admin/userCRUD/main";
     }
 
 }
