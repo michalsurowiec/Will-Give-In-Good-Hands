@@ -46,4 +46,10 @@ public class UserManagementController {
         userService.blockUser(id);
         return "redirect:/admin/userCRUD/main";
     }
+
+    @GetMapping(path = "/unblock/{id}")
+    public String unblockUser(@PathVariable(name = "id") Long id){
+        userService.unblockUser(id);
+        return "redirect:/admin/userCRUD/main";
+    }
 }

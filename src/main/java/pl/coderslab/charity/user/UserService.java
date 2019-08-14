@@ -57,4 +57,11 @@ public class UserService {
         user.getRoles().add(roleRepository.findByName("ROLE_BANNED"));
         userRepository.save(user);
     }
+
+    public void unblockUser(Long id){
+        User user = userRepository.findById(id).get();
+        user.getRoles().remove(roleRepository.findByName("ROLE_BANNED"));
+        user.getRoles().add(roleRepository.findByName("ROLE_USER"));
+        userRepository.save(user);
+    }
 }
