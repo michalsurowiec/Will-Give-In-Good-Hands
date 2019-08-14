@@ -6,7 +6,7 @@ INSERT INTO donation VALUES (null, 'Wrocław', 'Po prostu to weźcie', '2019-07-
 
 INSERT INTO donation_categories VALUES (1, 1), (2, 2), (3, 3), (4, 1), (5, 2), (2, 3), (3, 2)
 
-INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN')
+INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN'), (null, 'ROLE_BANNED')
 
 # TODO delete information about passwords after everything is done
 

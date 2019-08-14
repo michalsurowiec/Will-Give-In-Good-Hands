@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/admin/userCRUD")
 public class UserManagementController {
@@ -19,7 +21,9 @@ public class UserManagementController {
     //Zmienić metodę findAllAdmins w sposób pozwalający na szukanie użytkowników po ich rolach a także stworzyć JSP
     @RequestMapping(path = "/main")
     public String showAdmins(Model model){
-        model.addAttribute("users", userService.findAllUsersByRole("ROLE_USER"));
+        List<UserDto> users = userService.findAllUsersByRole("ROLE_USER");
+        users.addAll(userService.findAllUsersByRole("ROLE_BANNED"));
+        model.addAttribute("users", users);
         return "user-management";
     }
 
