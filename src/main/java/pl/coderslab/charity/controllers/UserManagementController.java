@@ -35,4 +35,9 @@ public class UserManagementController {
         return "redirect:/admin/userCRUD/main";
     }
 
+    @GetMapping(path = "/block/{id}")
+    public String blockUser(@PathVariable(name = "id") Long id){
+        userService.blockUser(id);
+        return "redirect:/admin/userCRUD/main";
+    }
 }

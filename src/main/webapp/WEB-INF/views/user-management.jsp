@@ -25,6 +25,7 @@
               <div class="col">
                 <div class="title">${user.id}. ${user.name} ${user.surname} ${user.email}
                   <a href="/admin/userCRUD/update/<c:out value="${user.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>
+                  <a href="/admin/userCRUD/block/<c:out value="${user.id}"/>" class="btn btn--small btn--highlighted">Zablokuj</a>
 <%--                  <a href="/admin/adminCRUD/delete/<c:out value="${user.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
                 </div>
               </div>
