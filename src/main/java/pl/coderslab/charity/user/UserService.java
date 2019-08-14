@@ -26,11 +26,6 @@ public class UserService {
     public void saveUser (UserDto userDto, String role){
         User user = new User();
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        /*
-        If user is just updated, Dto contains id of him.
-        While form of editing was submitted, password input might be empty. It means, that submitter doesn't want to
-        change the password. It is caught here and password is set to default from database.
-         */
         if (userDto.getId() != null){
             user.setId(userDto.getId());
             if (userDto.getPassword().equals("")){
@@ -41,10 +36,6 @@ public class UserService {
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
         user.setRoles(new HashSet<Role>(Arrays.asList(roleRepository.findByName(role))));
-        //If user is banned, he has not one but two roles to still see him in userManagement panel.
-        if (role.equals("ROLE_BANNED")){
-            user.getRoles().add(roleRepository.findByName("ROLE_USER"));
-        }
         userRepository.save(user);
     }
 
@@ -60,4 +51,9 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public void blockUser(Long id){
+        User user = userRepository.findById(id).get();
+        user.getRoles().remove(roleRepository.findByName("ROLE_USER"));
+        userRepository.save(user);
+    }
 }

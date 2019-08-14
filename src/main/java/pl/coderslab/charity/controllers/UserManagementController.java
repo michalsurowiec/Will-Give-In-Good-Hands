@@ -37,7 +37,7 @@ public class UserManagementController {
 
     @GetMapping(path = "/block/{id}")
     public String blockUser(@PathVariable(name = "id") Long id){
-        userService.saveUser(userService.findById(id), "ROLE_BANNED");
+        userService.blockUser(id);
         return "redirect:/admin/userCRUD/main";
     }
 }

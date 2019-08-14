@@ -16,12 +16,10 @@ public class UserController {
 
     @RequestMapping(path = "/main")
     private String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser currentUser){
-        String redirect = "access-denied";
+        String redirect = "user-main-page";
         for (GrantedAuthority grantedAuthority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
             if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")){
                 redirect = "admin-main-page";
-            } else if (grantedAuthority.getAuthority().equals("ROLE_USER")){
-                redirect = "user-main-page";
             }
         }
         model.addAttribute("currentUser", currentUser);
