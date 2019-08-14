@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -23,6 +24,7 @@ public class UserManagementController {
     public String showAdmins(Model model){
         List<UserDto> users = userService.findAllUsersByRole("ROLE_USER");
         users.addAll(userService.findAllUsersByRole("ROLE_BANNED"));
+        users.sort(Comparator.comparing(UserDto::getId));
         model.addAttribute("users", users);
         return "user-management";
     }
