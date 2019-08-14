@@ -17,6 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/donation/**").hasRole("USER")
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/**").not().hasRole("BANNED")
                 .anyRequest().permitAll()
                 .and().formLogin()
                 .loginPage("/login").successForwardUrl("/user/main")
