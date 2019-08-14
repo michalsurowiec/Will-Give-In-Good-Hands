@@ -52,4 +52,10 @@ public class UserManagementController {
         userService.unblockUser(id);
         return "redirect:/admin/userCRUD/main";
     }
+
+    @GetMapping(path = "/delete/{id}")
+    public String deleteUser(@PathVariable(name = "id") Long id){
+        userService.deleteUser(id);
+        return "redirect:/admin/userCRUD/main";
+    }
 }

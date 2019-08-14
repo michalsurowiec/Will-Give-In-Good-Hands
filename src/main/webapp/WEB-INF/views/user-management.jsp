@@ -33,7 +33,7 @@
                         <a href="/admin/userCRUD/unblock/<c:out value="${user.id}"/>" class="btn btn--small btn--highlighted">Odblokuj</a>
                       </c:when>
                     </c:choose>
-<%--                  <a href="/admin/adminCRUD/delete/<c:out value="${user.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
+                  <a href="/admin/userCRUD/delete/<c:out value="${user.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>
                 </div>
               </div>
             </li>
