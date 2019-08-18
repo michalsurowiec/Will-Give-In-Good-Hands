@@ -20,16 +20,17 @@
 
     <section class="login-page">
       <h2>Formularz instytucji</h2>
-      <form:form method="post" action="/admin/institutionCRUD/create" modelAttribute="institution">
+      <form:form method="post" action="/admin/institutionCRUD/update" modelAttribute="institution">
 
         <div class="form-section form-section--columns">
           <div class="form-group form-group--inline">
-            <label><form:input placeholder="Nazwa" path="name"/></label>
+            <label><form:input placeholder="${institution.name}" path="name"/></label>
           </div>
           <div class="form-group form-group--inline">
-            <label><form:input placeholder="Opis" path="description"/></label>
+            <label><form:textarea placeholder="${institution.description}" path="description"/></label>
           </div>
 
+        <form:hidden path="id" value="${institution.id}"/>
         <div class="form-group form-group--buttons">
           <button class="btn" type="submit">Zapisz</button>
         </div>

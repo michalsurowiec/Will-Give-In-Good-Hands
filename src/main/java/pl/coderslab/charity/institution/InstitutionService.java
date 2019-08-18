@@ -24,8 +24,19 @@ public class InstitutionService {
         return institutionDtoList;
     }
 
+    public InstitutionDto findById(Long id){
+        return new InstitutionDto(institutionRepository.findById(id).get());
+    }
+
     public void create (InstitutionDto institutionDto){
         Institution institution = new Institution();
+        institution.setName(institutionDto.getName());
+        institution.setDescription(institutionDto.getDescription());
+        institutionRepository.save(institution);
+    }
+
+    public void update (InstitutionDto institutionDto){
+        Institution institution = institutionRepository.findById(institutionDto.getId()).get();
         institution.setName(institutionDto.getName());
         institution.setDescription(institutionDto.getDescription());
         institutionRepository.save(institution);

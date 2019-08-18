@@ -2,10 +2,7 @@ package pl.coderslab.charity.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.institution.InstitutionDto;
 import pl.coderslab.charity.institution.InstitutionService;
 
@@ -32,8 +29,20 @@ public class InstitutionManagementController {
     }
 
     @PostMapping(path = "/create")
-    public String saveInstitution(@ModelAttribute("admin") InstitutionDto institutionDto){
+    public String saveInstitution(@ModelAttribute("institution") InstitutionDto institutionDto){
         institutionService.create(institutionDto);
+        return "redirect:/admin/institutionCRUD/main";
+    }
+
+    @GetMapping(path = "/update/{id}")
+    public String updateInstitution(@PathVariable(name = "id") Long id, Model model){
+        model.addAttribute("institution", institutionService.findById(id));
+        return "institution-update-form";
+    }
+
+    @PostMapping(path = "/update")
+    public String saveUpdatedInstitution(@ModelAttribute("institution") InstitutionDto institutionDto){
+        institutionService.update(institutionDto);
         return "redirect:/admin/institutionCRUD/main";
     }
 
