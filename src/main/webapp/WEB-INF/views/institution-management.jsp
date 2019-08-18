@@ -19,7 +19,7 @@
       <h2>Lista instytucji</h2>
 
       <div class="help--slides active" data-id="1">
-<%--        <a href="/admin/adminCRUD/create" class="btn btn--large btn--highlighted">Stwórz admina</a>--%>
+        <a href="/admin/institutionCRUD/create" class="btn btn--large btn--highlighted">Stwórz instytucję</a>
         <ul class="help--slides-items">
           <c:forEach items="${institutions}" var="institution">
             <li>

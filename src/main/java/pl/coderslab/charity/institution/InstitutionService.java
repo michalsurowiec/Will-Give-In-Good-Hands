@@ -24,6 +24,13 @@ public class InstitutionService {
         return institutionDtoList;
     }
 
+    public void create (InstitutionDto institutionDto){
+        Institution institution = new Institution();
+        institution.setName(institutionDto.getName());
+        institution.setDescription(institutionDto.getDescription());
+        institutionRepository.save(institution);
+    }
+
     public long countInstitutions(){
         return institutionRepository.count();
     }

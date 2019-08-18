@@ -14,6 +14,9 @@ public class InstitutionDto {
     private String description;
     private List<Long> donationsId = new ArrayList<>();
 
+    public InstitutionDto() {
+    }
+
     public InstitutionDto(Institution institution) {
         this.id = institution.getId();
         this.name = institution.getName();
