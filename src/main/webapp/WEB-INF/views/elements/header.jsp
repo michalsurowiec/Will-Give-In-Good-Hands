@@ -21,6 +21,7 @@
                 <li><a href="/admin/main">Panel Główny</a></li>
                 <li><a href="/admin/adminCRUD/main">Admini</a></li>
                 <li><a href="/admin/userCRUD/main">Użytkownicy</a></li>
+                <li><a href="/admin/institutionCRUD/main">Instytucje</a></li>
                 </sec:authorize>
                 <li><a href="/logout">Wyloguj</a></li>
             </ul>

@@ -26,7 +26,7 @@
               <div class="col">
                 <div class="title">${institution.id}. ${institution.name} - ${institution.description}
                   <a href="/admin/institutionCRUD/update/<c:out value="${institution.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>
-<%--                  <a href="/admin/adminCRUD/delete/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
+                  <a href="/admin/institutionCRUD/delete/<c:out value="${institution.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>
                 </div>
               </div>
             </li>

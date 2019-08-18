@@ -2,6 +2,7 @@ package pl.coderslab.charity.institution;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.charity.donation.DonationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.List;
 public class InstitutionService {
 
     private InstitutionRepository institutionRepository;
+    private DonationRepository donationRepository;
 
-    public InstitutionService(InstitutionRepository institutionRepository) {
+    public InstitutionService(InstitutionRepository institutionRepository, DonationRepository donationRepository) {
         this.institutionRepository = institutionRepository;
+        this.donationRepository = donationRepository;
     }
 
     public List<InstitutionDto> findAll(){
@@ -40,6 +43,11 @@ public class InstitutionService {
         institution.setName(institutionDto.getName());
         institution.setDescription(institutionDto.getDescription());
         institutionRepository.save(institution);
+    }
+
+    public void delete (Long id){
+        donationRepository.deleteAllByInstitution(institutionRepository.findById(id).get());
+        institutionRepository.deleteById(id);
     }
 
     public long countInstitutions(){
