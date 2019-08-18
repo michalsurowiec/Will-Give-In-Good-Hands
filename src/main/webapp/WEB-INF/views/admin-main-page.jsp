@@ -25,6 +25,9 @@
         <div class="steps--item">
           <a href="/admin/userCRUD/main" class="btn btn--small btn--highlighted">Zarządzanie użytkownikami</a>
         </div>
+        <div class="steps--item">
+          <a href="/admin/institutionCRUD/main" class="btn btn--small btn--highlighted">Zarządzanie instytucjami</a>
+        </div>
       </div>
     </section>
 
