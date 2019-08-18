@@ -19,8 +19,8 @@
     </header>
 
     <section class="login-page">
-      <h2>Formularz użytkownika</h2>
-      <form:form method="post" action="/admin/userCRUD/save" modelAttribute="user">
+      <h2>Formularz admina</h2>
+      <form:form method="post" action="/user/update" modelAttribute="user">
 
         <div class="form-section form-section--columns">
           <div class="form-group form-group--inline">
@@ -32,14 +32,7 @@
           <div class="form-group form-group--inline">
             <label>E-mail:<form:input placeholder="${user.email}" path="email"/></label>
           </div>
-          <div class="form-group form-group--inline">
-            <label>Hasło:<form:password path="password"/></label>
-          </div>
         </div>
-<%--        TODO Add a double check of password during registration--%>
-<%--        <div class="form-group">--%>
-<%--          <input type="password" name="password2" placeholder="Powtórz hasło" />--%>
-<%--        </div>--%>
 
         <form:hidden path="id" value="${user.id}"/>
         <div class="form-group form-group--buttons">

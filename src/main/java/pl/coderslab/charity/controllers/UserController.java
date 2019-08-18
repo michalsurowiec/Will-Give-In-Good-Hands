@@ -5,14 +5,21 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.CurrentUser;
+import pl.coderslab.charity.user.UserDto;
+import pl.coderslab.charity.user.UserService;
 
 @Controller
 @RequestMapping(path = "/user")
 @SessionAttributes("currentUser")
 public class UserController {
+
+    private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(path = "/main")
     private String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser currentUser){
@@ -26,6 +33,18 @@ public class UserController {
         }
         model.addAttribute("currentUser", currentUser);
         return redirect;
+    }
+
+    @GetMapping(path = "/update")
+    public String update(Model model, @AuthenticationPrincipal CurrentUser currentUser){
+        model.addAttribute("user", userService.findById(currentUser.getUser().getId()));
+        return "user-self-update-form";
+    }
+
+    @PostMapping(path = "/update")
+    public String save(@ModelAttribute("user") UserDto userDto){
+        userService.saveUser(userDto, "ROLE_USER");
+        return "redirect:/user/main";
     }
 
 }
