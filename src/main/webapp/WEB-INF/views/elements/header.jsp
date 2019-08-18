@@ -10,7 +10,6 @@
         <sec:authorize access="isAuthenticated()">
         <li class="logged-user">
             Cześć ${currentUser.user.name}!
-<%--            <sec:authentication property="name"/>--%>
             <ul class="dropdown">
                 <sec:authorize access="hasRole('USER')">
                 <li><a href="/user/main">Profil</a></li>

@@ -11,18 +11,26 @@
     <link rel="stylesheet" href="<c:url value="../../../resources/css/style.css"/>" />
   </head>
   <body>
-    <header class="header--form-page">
+    <header>
 
       <%@ include file="elements/header.jsp"%>
 
-      <div class="slogan container container--90">
-          <h2>
-            Panel użytkownika
-          </h2>
-      </div>
     </header>
 
-    <%@ include file="elements/footer.jsp"%>
+    <h2>Panel użytkownika</h2>
+
+    <section class="about-us">
+      <div class="about-us--text">
+        <h2>Twoje dane</h2>
+        <p>Imie: ${currentUser.user.name}<br>
+        Nazwisko: ${currentUser.user.surname}<br>
+        E-mail: ${currentUser.user.email}<br>
+        </p>
+        <p>
+        <a href="/user/update" class="btn btn--small btn--highlighted">Edytuj</a>
+        </p>
+      </div>
+    </section>
 
     <script src="<c:url value="../../../resources/js/app.js"/>"></script>
   </body>
