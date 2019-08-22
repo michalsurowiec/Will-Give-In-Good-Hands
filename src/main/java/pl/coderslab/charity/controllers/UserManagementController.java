@@ -19,7 +19,6 @@ public class UserManagementController {
         this.userService = userService;
     }
 
-    //Zmienić metodę findAllAdmins w sposób pozwalający na szukanie użytkowników po ich rolach a także stworzyć JSP
     @RequestMapping(path = "/main")
     public String showAdmins(Model model){
         List<UserDto> users = userService.findAllUsersByRole("ROLE_USER");
@@ -35,9 +34,12 @@ public class UserManagementController {
         return "user-update-form";
     }
 
-    @PostMapping(path = "/save")
-    public String saveAdmin(@ModelAttribute("user") UserDto user){
-        userService.saveUser(user, "ROLE_USER");
+    @PostMapping(path = "/update")
+    public String saveUser(@ModelAttribute("user") UserDto user){
+        userService.updateUser(user);
+        if(!(user.getPassword().equals(""))){
+            userService.updateUserPassword(user);
+        }
         return "redirect:/admin/userCRUD/main";
     }
 

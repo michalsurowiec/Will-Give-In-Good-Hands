@@ -39,6 +39,20 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void updateUser(UserDto userDto){
+        User user = userRepository.findById(userDto.getId()).get();
+        user.setEmail(userDto.getEmail());
+        user.setName(userDto.getName());
+        user.setSurname(userDto.getSurname());
+        userRepository.save(user);
+    }
+
+    public void updateUserPassword(UserDto userDto){
+        User user = userRepository.findById(userDto.getId()).get();
+        user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        userRepository.save(user);
+    }
+
     public List<UserDto> findAllUsersByRole(String role){
         return userRepository.findAllByRolesEquals(roleRepository.findByName(role)).stream().map(UserDto::new).collect(Collectors.toList());
     }

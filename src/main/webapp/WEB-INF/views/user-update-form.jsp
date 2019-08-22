@@ -20,7 +20,7 @@
 
     <section class="login-page">
       <h2>Formularz użytkownika</h2>
-      <form:form method="post" action="/admin/userCRUD/save" modelAttribute="user">
+      <form:form method="post" action="/admin/userCRUD/update" modelAttribute="user">
 
         <div class="form-section form-section--columns">
           <div class="form-group form-group--inline">
