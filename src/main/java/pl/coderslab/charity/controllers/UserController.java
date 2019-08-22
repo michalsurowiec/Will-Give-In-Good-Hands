@@ -43,7 +43,7 @@ public class UserController {
 
     @PostMapping(path = "/update")
     public String save(@ModelAttribute("user") UserDto userDto){
-        userService.saveUser(userDto, "ROLE_USER");
+        userService.updateUser(userDto);
         return "redirect:/user/main";
     }
 

@@ -37,10 +37,10 @@ public class AdminManagementController {
     @GetMapping(path = "/update/{id}")
     public String updateAdmin(@PathVariable(name = "id") Long id, Model model){
         model.addAttribute("admin", userService.findById(id));
-        return "admin-create-form";
+        return "admin-update-form";
     }
 
-    @PostMapping(path = "/create")
+    @PostMapping(path = "/update")
     public String saveUpdatedAdmin(@ModelAttribute("admin") UserDto admin){
         userService.updateUser(admin);
         if(!(admin.getPassword().equals(""))){
