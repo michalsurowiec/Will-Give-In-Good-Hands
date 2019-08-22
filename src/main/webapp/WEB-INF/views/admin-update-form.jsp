@@ -20,7 +20,7 @@
 
     <section class="login-page">
       <h2>Formularz admina</h2>
-      <form:form method="post" action="/admin/adminCRUD/create" modelAttribute="admin">
+      <form:form method="post" action="/admin/adminCRUD/update" modelAttribute="admin">
 
         <div class="form-section form-section--columns">
           <div class="form-group form-group--inline">
@@ -41,7 +41,7 @@
 <%--          <input type="password" name="password2" placeholder="Powtórz hasło" />--%>
 <%--        </div>--%>
 
-<%--        <form:hidden path="id" value="${admin.id}"/>--%>
+        <form:hidden path="id" value="${admin.id}"/>
         <div class="form-group form-group--buttons">
           <button class="btn" type="submit">Zapisz</button>
         </div>

@@ -26,12 +26,6 @@ public class UserService {
     public void saveUser (UserDto userDto, String role){
         User user = new User();
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        if (userDto.getId() != null){
-            user.setId(userDto.getId());
-            if (userDto.getPassword().equals("")){
-                user.setPassword(userRepository.findById(userDto.getId()).get().getPassword());
-            }
-        }
         user.setEmail(userDto.getEmail());
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());

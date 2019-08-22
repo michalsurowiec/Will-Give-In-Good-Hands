@@ -28,7 +28,7 @@ public class AdminManagementController {
         return "admin-create-form";
     }
 
-    @PostMapping(path = "/save")
+    @PostMapping(path = "/create")
     public String saveAdmin(@ModelAttribute("admin") UserDto admin){
         userService.saveUser(admin, "ROLE_ADMIN");
         return "redirect:/admin/adminCRUD/main";
@@ -38,6 +38,15 @@ public class AdminManagementController {
     public String updateAdmin(@PathVariable(name = "id") Long id, Model model){
         model.addAttribute("admin", userService.findById(id));
         return "admin-create-form";
+    }
+
+    @PostMapping(path = "/create")
+    public String saveUpdatedAdmin(@ModelAttribute("admin") UserDto admin){
+        userService.updateUser(admin);
+        if(!(admin.getPassword().equals(""))){
+            userService.updateUserPassword(admin);
+        }
+        return "redirect:/admin/adminCRUD/main";
     }
 
     @GetMapping(path = "/delete/{id}")
