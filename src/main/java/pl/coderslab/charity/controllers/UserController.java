@@ -18,6 +18,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @RequestMapping(path = "/main")
+    private String showUserPanel(){
+        return "user-main-page";
+    }
+
     @GetMapping(path = "/update")
     public String update(Model model, @AuthenticationPrincipal CurrentUser currentUser){
         model.addAttribute("user", userService.findById(currentUser.getUser().getId()));
@@ -28,19 +33,20 @@ public class UserController {
     public String save(@ModelAttribute("user") UserDto userDto, @AuthenticationPrincipal CurrentUser currentUser){
         userDto.setId(currentUser.getUser().getId());
         userService.updateUser(userDto);
-        return "redirect:/user/main";
+        return "redirect:/logout";
     }
 
-//    @GetMapping(path = "/updatePassword")
-//    public String updatePassword(Model model, @AuthenticationPrincipal CurrentUser currentUser){
-//        model.addAttribute("user", userService.findById(currentUser.getUser().getId()));
-//        return "user-self-update-password-form";
-//    }
-//
-//    @PostMapping(path = "/updatePassword")
-//    public String savePassword(@ModelAttribute("user") UserDto userDto){
-//        userService.updateUser(userDto);
-//        return "redirect:/user/main";
-//    }
+    @GetMapping(path = "/updatePassword")
+    public String updatePassword(Model model){
+        model.addAttribute("user", new UserDto());
+        return "user-self-update-password-form";
+    }
+
+    @PostMapping(path = "/updatePassword")
+    public String savePassword(@ModelAttribute("user") UserDto userDto, @AuthenticationPrincipal CurrentUser currentUser){
+        userDto.setId(currentUser.getUser().getId());
+        userService.updateUserPassword(userDto);
+        return "redirect:/logout";
+    }
 
 }

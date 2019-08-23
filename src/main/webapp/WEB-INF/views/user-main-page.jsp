@@ -28,6 +28,7 @@
         </p>
         <p>
         <a href="/user/update" class="btn btn--small btn--highlighted">Edytuj</a>
+        <a href="/user/updatePassword" class="btn btn--small btn--highlighted">Zmień hasło</a>
         </p>
       </div>
     </section>
