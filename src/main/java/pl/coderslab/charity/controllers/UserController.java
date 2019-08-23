@@ -25,9 +25,22 @@ public class UserController {
     }
 
     @PostMapping(path = "/update")
-    public String save(@ModelAttribute("user") UserDto userDto){
+    public String save(@ModelAttribute("user") UserDto userDto, @AuthenticationPrincipal CurrentUser currentUser){
+        userDto.setId(currentUser.getUser().getId());
         userService.updateUser(userDto);
         return "redirect:/user/main";
     }
+
+//    @GetMapping(path = "/updatePassword")
+//    public String updatePassword(Model model, @AuthenticationPrincipal CurrentUser currentUser){
+//        model.addAttribute("user", userService.findById(currentUser.getUser().getId()));
+//        return "user-self-update-password-form";
+//    }
+//
+//    @PostMapping(path = "/updatePassword")
+//    public String savePassword(@ModelAttribute("user") UserDto userDto){
+//        userService.updateUser(userDto);
+//        return "redirect:/user/main";
+//    }
 
 }

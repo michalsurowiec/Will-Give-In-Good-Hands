@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <form:hidden path="id" value="${user.id}"/>
+<%--        <form:hidden path="id" value="${user.id}"/>--%>
         <div class="form-group form-group--buttons">
           <button class="btn" type="submit">Zapisz</button>
         </div>
