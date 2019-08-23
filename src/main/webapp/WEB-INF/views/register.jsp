@@ -39,7 +39,6 @@
 <%--        </div>--%>
 
         <div class="form-group form-group--buttons">
-          <a href="#" class="btn btn--without-border">Zaloguj się</a>
           <button class="btn" type="submit">Załóż konto</button>
         </div>
       </form:form>
