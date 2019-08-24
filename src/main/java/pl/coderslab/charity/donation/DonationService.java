@@ -1,10 +1,11 @@
 package pl.coderslab.charity.donation;
 
+import org.springframework.aop.AopInvocationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.category.CategoryRepository;
-import pl.coderslab.charity.institution.Institution;
 import pl.coderslab.charity.institution.InstitutionRepository;
+import pl.coderslab.charity.user.UserRepository;
 
 @Service
 @Transactional
@@ -13,15 +14,21 @@ public class DonationService {
     private DonationRepository donationRepository;
     private CategoryRepository categoryRepository;
     private InstitutionRepository institutionRepository;
+    private UserRepository userRepository;
 
-    public DonationService(DonationRepository donationRepository, CategoryRepository categoryRepository, InstitutionRepository institutionRepository) {
+    public DonationService(DonationRepository donationRepository, CategoryRepository categoryRepository, InstitutionRepository institutionRepository, UserRepository userRepository) {
         this.donationRepository = donationRepository;
         this.categoryRepository = categoryRepository;
         this.institutionRepository = institutionRepository;
+        this.userRepository = userRepository;
     }
 
     public int totalQuantity(){
-        return donationRepository.sumQuantity();
+        try {
+            return donationRepository.sumQuantity();
+        } catch (AopInvocationException AIE){
+            return 0;
+        }
     }
 
     public Long countDonations() {
