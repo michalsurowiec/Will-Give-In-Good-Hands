@@ -1,6 +1,7 @@
 package pl.coderslab.charity.user;
 
 import lombok.Data;
+import pl.coderslab.charity.donation.Donation;
 import pl.coderslab.charity.role.Role;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class UserDto {
     private String name;
     private String surname;
     private List<Long> rolesId = new ArrayList<>();
+    private List<Long> donationsId = new ArrayList<>();
 
     public UserDto() {
     }
@@ -27,6 +29,9 @@ public class UserDto {
         this.surname = user.getSurname();
         for (Role role : user.getRoles()){
             this.rolesId.add(role.getId());
+        }
+        for (Donation donation : user.getDonations()){
+            this.donationsId.add(donation.getId());
         }
     }
 }

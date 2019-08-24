@@ -1,6 +1,7 @@
 package pl.coderslab.charity.user;
 
 import lombok.Data;
+import pl.coderslab.charity.donation.Donation;
 import pl.coderslab.charity.role.Role;
 
 import javax.persistence.*;
@@ -20,4 +21,6 @@ public class User {
     private String surname;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;
+    @OneToMany(mappedBy = "user")
+    private Set<Donation> donations;
 }
