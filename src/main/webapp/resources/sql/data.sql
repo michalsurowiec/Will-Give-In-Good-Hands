@@ -2,9 +2,6 @@ INSERT INTO category VALUES (null, 'ubrania, które nadają się do ponownego u�
 
 INSERT INTO institution VALUES (null, 'Pomoc dzieciom z ubogich rodzin.', 'Dbam o Zdrowie'), (null, 'Pomoc wybudzaniu dzieci ze śpiączki.', 'A kogo'), (null, 'Pomoc osobom znajdującym się w trudnej sytuacji życiowej.', 'Dla dzieci'), (null, 'Pomoc dla osób nie posiadających miejsca zamieszkania', 'Bez domu')
 
-INSERT INTO donation VALUES (null, 'Wrocław', 'Po prostu to weźcie', '2019-07-19', '15:08', 1, 'Daszyńskiego', '50-156', 1), (null, 'Wałbrzych', 'Nara', '2019-07-18', '12:08', 2, 'Paderewskiego', '30-156', 2), (null, 'Inowrocław', 'Kai mosz bilet', '2019-07-17', '15:39', 1, 'Wyszyńskiego', '50-789', 3), (null, 'Kożuszki', 'Hasiok', '2019-07-16', '10:08', 2, 'Piłsudskiego', '19-156', 4), (null, 'Wrocław', 'Nudzi mi się', '2019-07-15', '9:09', 1, '3 Maja', '42-400', 1)
-
-INSERT INTO donation_categories VALUES (1, 1), (2, 2), (3, 3), (4, 1), (5, 2), (2, 3), (3, 2)
 
 INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN'), (null, 'ROLE_BANNED')
 
@@ -13,5 +10,9 @@ INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN'), (null, 'ROLE_
 # michal@o2.pl password - 123
 # kamil@o2.pl password - 123
 INSERT INTO user VALUES (null, 'michal@o2.pl', 'Michał', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec'), (null, 'kamil@o2.pl', 'Kamil', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec')
+
+INSERT INTO donation VALUES (null, 'Wrocław', 'Po prostu to weźcie', '2019-07-19', '15:08', 1, 'Daszyńskiego', '50-156', 1, 2), (null, 'Wałbrzych', 'Nara', '2019-07-18', '12:08', 2, 'Paderewskiego', '30-156', 2, 2), (null, 'Inowrocław', 'Kai mosz bilet', '2019-07-17', '15:39', 1, 'Wyszyńskiego', '50-789', 3, 2), (null, 'Kożuszki', 'Hasiok', '2019-07-16', '10:08', 2, 'Piłsudskiego', '19-156', 4, 2), (null, 'Wrocław', 'Nudzi mi się', '2019-07-15', '9:09', 1, '3 Maja', '42-400', 1, 2)
+
+INSERT INTO donation_categories VALUES (1, 1), (2, 2), (3, 3), (4, 1), (5, 2), (2, 3), (3, 2)
 
 INSERT INTO user_roles VALUES (2, 1), (1, 2)
