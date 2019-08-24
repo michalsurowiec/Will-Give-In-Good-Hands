@@ -1,11 +1,13 @@
 package pl.coderslab.charity.controllers;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.CurrentUser;
 import pl.coderslab.charity.category.CategoryService;
 import pl.coderslab.charity.donation.DonationDto;
 import pl.coderslab.charity.donation.DonationService;
@@ -34,7 +36,8 @@ public class DonationController {
     }
 
     @PostMapping(path = "/form")
-    private String saveForm(@ModelAttribute("donation") DonationDto donationDto){
+    private String saveForm(@ModelAttribute("donation") DonationDto donationDto, @AuthenticationPrincipal CurrentUser currentUser){
+        donationDto.setUser(currentUser.getUser().getId());
         donationService.saveDonation(donationDto);
         return "form-confirmation";
     }

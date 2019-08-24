@@ -46,6 +46,7 @@ public class DonationService {
         donation.setPickUpDate(donationDto.getPickUpDate());
         donation.setPickUpTime(donationDto.getPickUpTime());
         donation.setPickUpComment(donationDto.getPickUpComment());
+        donation.setUser(userRepository.findById(donationDto.getUser()).get());
         donationRepository.save(donation);
     }
 
