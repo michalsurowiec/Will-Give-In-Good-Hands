@@ -41,9 +41,17 @@
           <c:forEach items="${donations}" var="donation">
             <li>
               <div class="col">
-                <div class="title">${donation.id}.
+                <div class="title">${donation.id}. ${donation.quantity} worków zawierających
+                  <c:forEach items="${donation.categoriesNames}" var="category">${category}, </c:forEach>
+                  dla fundacji <c:forEach items="${institutions}" var="institution">
+                    <c:if test="${institution.id == donation.institution}">"${institution.name}".</c:if></c:forEach>
 <%--                  <a href="/admin/adminCRUD/update/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>--%>
 <%--                  <a href="/admin/adminCRUD/delete/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
+                </div>
+                <div class="subtitle">
+                  Odbiór w ${donation.city} ${donation.zipCode} na ulicy ${donation.street}.
+                  Do odebrania dnia ${donation.pickUpDate} o godzinie ${donation.pickUpTime}.
+                  Komentarz do odbioru: ${donation.pickUpComment}
                 </div>
               </div>
             </li>

@@ -20,6 +20,7 @@ public class DonationDto {
     private Long id;
     private int quantity;
     private List<Long> categoriesId = new ArrayList<>();
+    private List<String> categoriesNames = new ArrayList<>();
     private Long institution;
     private String street;
     private String city;
@@ -38,6 +39,7 @@ public class DonationDto {
         this.quantity = donation.getQuantity();
         for (Category category: donation.getCategories()){
             this.categoriesId.add(category.getId());
+            this.categoriesNames.add(category.getName());
         }
         this.institution = donation.getInstitution().getId();
         this.street = donation.getStreet();
