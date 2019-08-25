@@ -10,6 +10,7 @@ import pl.coderslab.charity.user.UserService;
 
 @Controller
 @RequestMapping(path = "/user")
+@SessionAttributes("currentUser")
 public class UserController {
 
     private UserService userService;
@@ -30,10 +31,17 @@ public class UserController {
     }
 
     @PostMapping(path = "/update")
-    public String save(@ModelAttribute("user") UserDto userDto, @AuthenticationPrincipal CurrentUser currentUser){
+    public String save(@ModelAttribute("user") UserDto userDto, @AuthenticationPrincipal CurrentUser currentUser, Model model){
         userDto.setId(currentUser.getUser().getId());
+
+        //After user updates his profile, this lines update information about user contained in Security
+        currentUser.getUser().setName(userDto.getName());
+        currentUser.getUser().setSurname(userDto.getSurname());
+        currentUser.getUser().setEmail(userDto.getEmail());
+        model.addAttribute("currentUser", currentUser);
+
         userService.updateUser(userDto);
-        return "redirect:/logout";
+        return "redirect:/user/main";
     }
 
     @GetMapping(path = "/updatePassword")
@@ -46,7 +54,7 @@ public class UserController {
     public String savePassword(@ModelAttribute("user") UserDto userDto, @AuthenticationPrincipal CurrentUser currentUser){
         userDto.setId(currentUser.getUser().getId());
         userService.updateUserPassword(userDto);
-        return "redirect:/logout";
+        return "redirect:/user/main";
     }
 
 }
