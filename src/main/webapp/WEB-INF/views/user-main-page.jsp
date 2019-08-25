@@ -33,6 +33,25 @@
       </div>
     </section>
 
+    <section class="help">
+      <h2>Lista donacji</h2>
+
+      <div class="help--slides active" data-id="1">
+        <ul class="help--slides-items">
+          <c:forEach items="${donations}" var="donation">
+            <li>
+              <div class="col">
+                <div class="title">${donation.id}.
+<%--                  <a href="/admin/adminCRUD/update/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>--%>
+<%--                  <a href="/admin/adminCRUD/delete/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
+                </div>
+              </div>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>
+    </section>
+
     <script src="<c:url value="../../../resources/js/app.js"/>"></script>
   </body>
 </html>

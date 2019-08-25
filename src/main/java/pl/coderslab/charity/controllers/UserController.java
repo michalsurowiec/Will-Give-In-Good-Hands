@@ -5,8 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.CurrentUser;
+import pl.coderslab.charity.donation.DonationDto;
+import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/user")
@@ -14,13 +18,16 @@ import pl.coderslab.charity.user.UserService;
 public class UserController {
 
     private UserService userService;
+    private DonationService donationService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, DonationService donationService) {
         this.userService = userService;
+        this.donationService = donationService;
     }
 
     @RequestMapping(path = "/main")
-    private String showUserPanel(){
+    private String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser currentUser){
+        model.addAttribute("donations", donationService.findDonationsByUserId(currentUser.getUser().getId()));
         return "user-main-page";
     }
 

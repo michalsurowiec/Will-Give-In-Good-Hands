@@ -40,7 +40,7 @@ public class LoginController
             if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")){
                 redirect = "admin-main-page";
             } else if (grantedAuthority.getAuthority().equals("ROLE_USER")){
-                redirect = "user-main-page";
+                redirect = "redirect:/user/main";
             }
         }
         model.addAttribute("currentUser", currentUser);

@@ -2,6 +2,7 @@ package pl.coderslab.charity.donation;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.charity.category.Category;
 import pl.coderslab.charity.category.CategoryDto;
 import pl.coderslab.charity.category.CategoryRepository;
 import pl.coderslab.charity.category.CategoryService;
@@ -29,4 +30,22 @@ public class DonationDto {
     private String pickUpComment;
     private Long user;
 
+    public DonationDto() {
+    }
+
+    public DonationDto(Donation donation) {
+        this.id = donation.getId();
+        this.quantity = donation.getQuantity();
+        for (Category category: donation.getCategories()){
+            this.categoriesId.add(category.getId());
+        }
+        this.institution = donation.getInstitution().getId();
+        this.street = donation.getStreet();
+        this.city = donation.getCity();
+        this.zipCode = donation.getZipCode();
+        this.pickUpDate = donation.getPickUpDate();
+        this.pickUpTime = donation.getPickUpTime();
+        this.pickUpComment = donation.getPickUpComment();
+        this.user = donation.getUser().getId();
+    }
 }

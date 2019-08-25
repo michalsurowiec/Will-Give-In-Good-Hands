@@ -7,6 +7,9 @@ import pl.coderslab.charity.category.CategoryRepository;
 import pl.coderslab.charity.institution.InstitutionRepository;
 import pl.coderslab.charity.user.UserRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 public class DonationService {
@@ -33,6 +36,11 @@ public class DonationService {
 
     public Long countDonations() {
         return donationRepository.count();
+    }
+
+    public List<DonationDto> findDonationsByUserId(Long id){
+        return donationRepository.findAllByUserEquals(userRepository.findById(id).get()).stream()
+                .map(DonationDto::new).collect(Collectors.toList());
     }
 
     public void saveDonation(DonationDto donationDto){
