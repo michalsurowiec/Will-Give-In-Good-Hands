@@ -16,7 +16,7 @@ public class UserDto {
     private String name;
     private String surname;
     private List<Long> rolesId = new ArrayList<>();
-    private List<Long> donationsId = new ArrayList<>();
+//    private List<Long> donationsId = new ArrayList<>();
 
     public UserDto() {
     }
@@ -30,8 +30,8 @@ public class UserDto {
         for (Role role : user.getRoles()){
             this.rolesId.add(role.getId());
         }
-        for (Donation donation : user.getDonations()){
-            this.donationsId.add(donation.getId());
-        }
+//        for (Donation donation : user.getDonations()){
+//            this.donationsId.add(donation.getId());
+//        }
     }
 }
