@@ -11,6 +11,7 @@ import pl.coderslab.charity.institution.InstitutionDto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,9 @@ public class DonationDto {
     private LocalTime pickUpTime;
     private String pickUpComment;
     private Long user;
+    private LocalDate creationDate;
+    private LocalDate confirmedPickUpDate;
+    private String status;
 
     public DonationDto() {
     }
@@ -49,5 +53,13 @@ public class DonationDto {
         this.pickUpTime = donation.getPickUpTime();
         this.pickUpComment = donation.getPickUpComment();
         this.user = donation.getUser().getId();
+        this.creationDate = donation.getCreationDate();
+        this.status = donation.getStatus();
+        this.confirmedPickUpDate = donation.getConfirmedPickUpDate();
     }
+
+//    public LocalDate getCreationDate() {
+//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        return creationDate.format(dateTimeFormatter);
+//    }
 }

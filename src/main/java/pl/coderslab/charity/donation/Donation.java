@@ -33,4 +33,9 @@ public class Donation {
     private String pickUpComment;
     @ManyToOne
     private User user;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate creationDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate confirmedPickUpDate;
+    private String status;
 }

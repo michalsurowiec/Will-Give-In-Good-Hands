@@ -13,6 +13,8 @@ import pl.coderslab.charity.donation.DonationDto;
 import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.institution.InstitutionService;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping(path = "/donation")
 public class DonationController {
@@ -38,6 +40,8 @@ public class DonationController {
     @PostMapping(path = "/form")
     private String saveForm(@ModelAttribute("donation") DonationDto donationDto, @AuthenticationPrincipal CurrentUser currentUser){
         donationDto.setUser(currentUser.getUser().getId());
+        donationDto.setCreationDate(LocalDate.now());
+        donationDto.setStatus("Nieodebrane");
         donationService.saveDonation(donationDto);
         return "form-confirmation";
     }
