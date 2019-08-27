@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.category.CategoryRepository;
 import pl.coderslab.charity.institution.InstitutionRepository;
+import pl.coderslab.charity.status.StatusRepository;
 import pl.coderslab.charity.user.UserRepository;
 
 import java.util.List;
@@ -18,12 +19,14 @@ public class DonationService {
     private CategoryRepository categoryRepository;
     private InstitutionRepository institutionRepository;
     private UserRepository userRepository;
+    private StatusRepository statusRepository;
 
-    public DonationService(DonationRepository donationRepository, CategoryRepository categoryRepository, InstitutionRepository institutionRepository, UserRepository userRepository) {
+    public DonationService(DonationRepository donationRepository, CategoryRepository categoryRepository, InstitutionRepository institutionRepository, UserRepository userRepository, StatusRepository statusRepository) {
         this.donationRepository = donationRepository;
         this.categoryRepository = categoryRepository;
         this.institutionRepository = institutionRepository;
         this.userRepository = userRepository;
+        this.statusRepository = statusRepository;
     }
 
     public int totalQuantity(){
@@ -55,7 +58,7 @@ public class DonationService {
         donation.setPickUpTime(donationDto.getPickUpTime());
         donation.setPickUpComment(donationDto.getPickUpComment());
         donation.setUser(userRepository.findById(donationDto.getUser()).get());
-        donation.setStatus(donationDto.getStatus());
+        donation.setStatus(statusRepository.findByName("Nieodebrane"));
         donation.setCreationDate(donationDto.getCreationDate());
         donationRepository.save(donation);
     }
