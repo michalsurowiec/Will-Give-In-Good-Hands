@@ -49,9 +49,11 @@
 <%--                  <a href="/admin/adminCRUD/delete/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
                 </div>
                 <div class="subtitle">
-                  Odbiór w ${donation.city} ${donation.zipCode} na ulicy ${donation.street}.
-                  Do odebrania dnia ${donation.pickUpDate} o godzinie ${donation.pickUpTime}.
-                  Komentarz do odbioru: ${donation.pickUpComment}
+                  Odbiór w ${donation.city} ${donation.zipCode} na ulicy ${donation.street}.<br>
+                  Do odebrania dnia ${donation.pickUpDate} o godzinie ${donation.pickUpTime}.<br>
+                  Komentarz do odbioru: ${donation.pickUpComment}<br>
+                  Data utworzenia: ${donation.creationDate}<br>
+                  Status: ${donation.status}
                 </div>
               </div>
             </li>

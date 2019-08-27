@@ -57,5 +57,5 @@ public class DonationDto {
         this.status = donation.getStatus();
         this.confirmedPickUpDate = donation.getConfirmedPickUpDate();
     }
-    
+
 }
