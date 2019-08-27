@@ -54,7 +54,7 @@ public class DonationDto {
         this.pickUpComment = donation.getPickUpComment();
         this.user = donation.getUser().getId();
         this.creationDate = donation.getCreationDate();
-        this.status = donation.getStatus();
+        this.status = donation.getStatus().getName();
         this.confirmedPickUpDate = donation.getConfirmedPickUpDate();
     }
 

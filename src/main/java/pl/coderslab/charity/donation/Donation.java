@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.category.Category;
 import pl.coderslab.charity.institution.Institution;
+import pl.coderslab.charity.status.Status;
 import pl.coderslab.charity.user.User;
 
 import javax.persistence.*;
@@ -37,6 +38,7 @@ public class Donation {
     private LocalDate creationDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate confirmedPickUpDate;
-    private String status;
+    @ManyToOne
+    private Status status;
 
 }
