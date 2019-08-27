@@ -57,9 +57,5 @@ public class DonationDto {
         this.status = donation.getStatus();
         this.confirmedPickUpDate = donation.getConfirmedPickUpDate();
     }
-
-//    public LocalDate getCreationDate() {
-//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//        return creationDate.format(dateTimeFormatter);
-//    }
+    
 }

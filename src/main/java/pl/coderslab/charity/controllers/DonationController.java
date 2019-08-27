@@ -40,8 +40,8 @@ public class DonationController {
     @PostMapping(path = "/form")
     private String saveForm(@ModelAttribute("donation") DonationDto donationDto, @AuthenticationPrincipal CurrentUser currentUser){
         donationDto.setUser(currentUser.getUser().getId());
-        donationDto.setCreationDate(LocalDate.now());
         donationDto.setStatus("Nieodebrane");
+        donationDto.setCreationDate(LocalDate.now());
         donationService.saveDonation(donationDto);
         return "form-confirmation";
     }
