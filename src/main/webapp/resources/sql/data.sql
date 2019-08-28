@@ -12,7 +12,7 @@ INSERT INTO user VALUES (null, 'michal@o2.pl', 'Michał', '$2a$10$k/5lxkDRWVsLDX
 
 INSERT INTO status VALUES (null, 'Nieodebrane'), (null, 'Odebrane')
 
-INSERT INTO donation VALUES (null, 'Wrocław', null, '2019-08-01', 'Po prostu to weźcie', '2019-07-19', '15:08', 1, 'Daszyńskiego', '50-156', 1, 1, 2), (null, 'Wałbrzych', null, '2019-08-01', 'Nara', '2019-07-18', '12:08', 2, 'Paderewskiego', '30-156', 2, 1, 2), (null, 'Inowrocław', null, '2019-08-01', 'Kai mosz bilet', '2019-07-17', '15:39', 1, 'Wyszyńskiego', '50-789', 3, 1, 2), (null, 'Kożuszki', null, '2019-08-01', 'Hasiok', '2019-07-16', '10:08', 2, 'Piłsudskiego', '19-156', 4, 1, 2), (null, 'Wrocław', null, '2019-08-01', 'Nudzi mi się', '2019-07-15', '9:09', 1, '3 Maja', '42-400', 1, 1, 2)
+INSERT INTO donation VALUES (null, 'Wrocław', '2019-08-28', '2019-08-01', 'Po prostu to weźcie', '2019-07-19', '15:08', 1, 'Daszyńskiego', '50-156', 1, 2, 2), (null, 'Wałbrzych', null, '2019-08-02', 'Nara', '2019-07-18', '12:08', 2, 'Paderewskiego', '30-156', 2, 1, 2), (null, 'Inowrocław', '2019-08-27', '2019-07-31', 'Kai mosz bilet', '2019-07-17', '15:39', 1, 'Wyszyńskiego', '50-789', 3, 2, 2), (null, 'Kożuszki', null, '2019-08-04', 'Hasiok', '2019-07-16', '10:08', 2, 'Piłsudskiego', '19-156', 4, 1, 2), (null, 'Wrocław', '2019-08-20', '2019-07-30', 'Nudzi mi się', '2019-07-15', '9:09', 1, '3 Maja', '42-400', 1, 2, 2)
 
 INSERT INTO donation_categories VALUES (1, 1), (2, 2), (3, 3), (4, 1), (5, 2), (2, 3), (3, 2)
 
