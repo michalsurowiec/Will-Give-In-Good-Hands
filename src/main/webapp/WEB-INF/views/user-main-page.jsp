@@ -53,7 +53,8 @@
                   Do odebrania dnia ${donation.pickUpDate} o godzinie ${donation.pickUpTime}.<br>
                   Komentarz do odbioru: ${donation.pickUpComment}<br>
                   Data utworzenia: ${donation.creationDate}<br>
-                  Status: ${donation.status}
+                  Status: ${donation.status}<br>
+                  <c:if test="${donation.status == 'Odebrane'}">Data odebrania: ${donation.confirmedPickUpDate}</c:if>
                 </div>
               </div>
             </li>
