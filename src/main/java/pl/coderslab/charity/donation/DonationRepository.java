@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.coderslab.charity.institution.Institution;
+import pl.coderslab.charity.status.Status;
 import pl.coderslab.charity.user.User;
 
 import java.util.List;
@@ -16,6 +17,6 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     void deleteAllByInstitution(Institution institution);
 
-    List<Donation> findAllByUserEquals(User user);
+    List<Donation> findAllByUserEqualsAndStatusEquals(User user, Status status);
 
 }

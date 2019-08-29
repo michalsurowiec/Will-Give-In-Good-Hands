@@ -34,27 +34,53 @@
     </section>
 
     <section class="help">
-      <h2>Lista donacji</h2>
+
+      <h2>Lista nieodebranych donacji</h2>
 
       <div class="help--slides active" data-id="1">
         <ul class="help--slides-items">
-          <c:forEach items="${donations}" var="donation">
+          <c:forEach items="${notReceived}" var="notReceived">
             <li>
               <div class="col">
-                <div class="title">${donation.id}. ${donation.quantity} worków zawierających
-                  <c:forEach items="${donation.categoriesNames}" var="category">${category}, </c:forEach>
+                <div class="title">${notReceived.quantity} worków zawierających
+                  <c:forEach items="${notReceived.categoriesNames}" var="category">${category}, </c:forEach>
                   dla fundacji <c:forEach items="${institutions}" var="institution">
-                    <c:if test="${institution.id == donation.institution}">"${institution.name}".</c:if></c:forEach>
-<%--                  <a href="/admin/adminCRUD/update/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>--%>
-<%--                  <a href="/admin/adminCRUD/delete/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
+                    <c:if test="${institution.id == notReceived.institution}">"${institution.name}".</c:if></c:forEach>
+                    <%--                  <a href="/admin/adminCRUD/update/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>--%>
+                    <%--                  <a href="/admin/adminCRUD/delete/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
                 </div>
                 <div class="subtitle">
-                  Odbiór w ${donation.city} ${donation.zipCode} na ulicy ${donation.street}.<br>
-                  Do odebrania dnia ${donation.pickUpDate} o godzinie ${donation.pickUpTime}.<br>
-                  Komentarz do odbioru: ${donation.pickUpComment}<br>
-                  Data utworzenia: ${donation.creationDate}<br>
-                  Status: ${donation.status}<br>
-                  <c:if test="${donation.status == 'Odebrane'}">Data odebrania: ${donation.confirmedPickUpDate}</c:if>
+                  Odbiór w ${notReceived.city} ${notReceived.zipCode} na ulicy ${notReceived.street}.<br>
+                  Do odebrania dnia ${notReceived.pickUpDate} o godzinie ${notReceived.pickUpTime}.<br>
+                  Komentarz do odbioru: ${notReceived.pickUpComment}<br>
+                  Data utworzenia: ${notReceived.creationDate}<br>
+                </div>
+              </div>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>
+
+      <h2>Lista odebranych donacji</h2>
+
+      <div class="help--slides active" data-id="1">
+        <ul class="help--slides-items">
+          <c:forEach items="${received}" var="received">
+            <li>
+              <div class="col">
+                <div class="title">${received.quantity} worków zawierających
+                  <c:forEach items="${received.categoriesNames}" var="category">${category}, </c:forEach>
+                  dla fundacji <c:forEach items="${institutions}" var="institution">
+                    <c:if test="${institution.id == received.institution}">"${institution.name}".</c:if></c:forEach>
+                    <%--                  <a href="/admin/adminCRUD/update/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>--%>
+                    <%--                  <a href="/admin/adminCRUD/delete/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
+                </div>
+                <div class="subtitle">
+                  Odbiór w ${received.city} ${received.zipCode} na ulicy ${received.street}.<br>
+                  Do odebrania dnia ${received.pickUpDate} o godzinie ${received.pickUpTime}.<br>
+                  Komentarz do odbioru: ${received.pickUpComment}<br>
+                  Data utworzenia: ${received.creationDate}<br>
+                  Data odebrania: ${received.confirmedPickUpDate}
                 </div>
               </div>
             </li>

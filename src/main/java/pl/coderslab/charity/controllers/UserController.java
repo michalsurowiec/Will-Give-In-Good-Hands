@@ -6,10 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.CurrentUser;
 import pl.coderslab.charity.category.CategoryService;
+import pl.coderslab.charity.donation.DonationDto;
 import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.institution.InstitutionService;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/user")
@@ -18,20 +23,27 @@ public class UserController {
 
     private UserService userService;
     private DonationService donationService;
-    private CategoryService categoryService;
     private InstitutionService institutionService;
 
-    public UserController(UserService userService, DonationService donationService, CategoryService categoryService, InstitutionService institutionService) {
+    public UserController(UserService userService, DonationService donationService, InstitutionService institutionService) {
         this.userService = userService;
         this.donationService = donationService;
-        this.categoryService = categoryService;
         this.institutionService = institutionService;
     }
 
     @RequestMapping(path = "/main")
     private String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser currentUser){
-        model.addAttribute("donations", donationService.findDonationsByUserId(currentUser.getUser().getId()));
+
+        List<DonationDto> notReceived = donationService.findDonationsByUserIdAndStatus(currentUser.getUser().getId(), "Nieodebrane");
+        notReceived.sort(Comparator.comparing(DonationDto::getCreationDate));
+        model.addAttribute("notReceived", notReceived);
+
+        List<DonationDto> received = donationService.findDonationsByUserIdAndStatus(currentUser.getUser().getId(), "Odebrane");
+        received.sort(Comparator.comparing(DonationDto::getConfirmedPickUpDate));
+        model.addAttribute("received", received);
+
         model.addAttribute("institutions", institutionService.findAll());
+
         return "user-main-page";
     }
 

@@ -41,8 +41,8 @@ public class DonationService {
         return donationRepository.count();
     }
 
-    public List<DonationDto> findDonationsByUserId(Long id){
-        return donationRepository.findAllByUserEquals(userRepository.findById(id).get()).stream()
+    public List<DonationDto> findDonationsByUserIdAndStatus(Long id, String status){
+        return donationRepository.findAllByUserEqualsAndStatusEquals(userRepository.findById(id).get(), statusRepository.findByName(status)).stream()
                 .map(DonationDto::new).collect(Collectors.toList());
     }
 
