@@ -6,9 +6,12 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.category.CategoryRepository;
 import pl.coderslab.charity.institution.InstitutionRepository;
 import pl.coderslab.charity.status.StatusRepository;
+import pl.coderslab.charity.user.User;
 import pl.coderslab.charity.user.UserRepository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,6 +49,11 @@ public class DonationService {
                 .map(DonationDto::new).collect(Collectors.toList());
     }
 
+    public List<DonationDto> findDonationsByUserId(Long id){
+        return donationRepository.findAllByUserEquals(userRepository.findById(id).get()).stream()
+                .map(DonationDto::new).collect(Collectors.toList());
+    }
+
     public void saveDonation(DonationDto donationDto){
         Donation donation = new Donation();
         donation.setQuantity(donationDto.getQuantity());
@@ -61,6 +69,10 @@ public class DonationService {
         donation.setStatus(statusRepository.findByName("Nieodebrane"));
         donation.setCreationDate(donationDto.getCreationDate());
         donationRepository.save(donation);
+    }
+
+    public DonationDto findDonationById(Long id){
+        return new DonationDto(donationRepository.findById(id).get());
     }
 
 }

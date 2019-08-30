@@ -3,10 +3,7 @@ package pl.coderslab.charity.controllers;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.CurrentUser;
 import pl.coderslab.charity.category.CategoryService;
 import pl.coderslab.charity.donation.DonationDto;
@@ -43,6 +40,19 @@ public class DonationController {
         donationDto.setCreationDate(LocalDate.now());
         donationService.saveDonation(donationDto);
         return "form-confirmation";
+    }
+
+    @GetMapping(path = "/details/{id}")
+    private String donationDetails(@PathVariable("id") Long id, @AuthenticationPrincipal CurrentUser currentUser, Model model){
+        String redirect = "access-denied";
+        for (DonationDto donationDtoEach : donationService.findDonationsByUserId(currentUser.getUser().getId())){
+            if (donationDtoEach.getId().equals(id)){
+                model.addAttribute("donation", donationDtoEach);
+                model.addAttribute("institutions", institutionService.findAll());
+                redirect = "donation-details";
+            }
+        }
+        return redirect;
     }
 
 }

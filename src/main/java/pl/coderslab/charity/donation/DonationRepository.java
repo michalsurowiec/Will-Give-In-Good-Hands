@@ -19,4 +19,6 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     List<Donation> findAllByUserEqualsAndStatusEquals(User user, Status status);
 
+    List<Donation> findAllByUserEquals(User user);
+
 }
