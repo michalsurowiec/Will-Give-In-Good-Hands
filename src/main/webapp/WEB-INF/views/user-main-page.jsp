@@ -42,18 +42,14 @@
           <c:forEach items="${notReceived}" var="notReceived">
             <li>
               <div class="col">
-                <div class="title">${notReceived.quantity} worków zawierających
-                  <c:forEach items="${notReceived.categoriesNames}" var="category">${category}, </c:forEach>
-                  dla fundacji <c:forEach items="${institutions}" var="institution">
-                    <c:if test="${institution.id == notReceived.institution}">"${institution.name}".</c:if></c:forEach>
-                    <%--                  <a href="/admin/adminCRUD/update/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>--%>
-                    <%--                  <a href="/admin/adminCRUD/delete/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
+                <div class="title">${notReceived.quantity} worki dla
+                  <c:forEach items="${institutions}" var="institution">
+                    <c:if test="${institution.id == notReceived.institution}">"${institution.name}".</c:if>
+                  </c:forEach>
+                  <a href="/donation/details/<c:out value="${notReceived.id}"/>" class="btn btn--small btn--highlighted">Szczegóły</a>
                 </div>
                 <div class="subtitle">
-                  Odbiór w ${notReceived.city} ${notReceived.zipCode} na ulicy ${notReceived.street}.<br>
-                  Do odebrania dnia ${notReceived.pickUpDate} o godzinie ${notReceived.pickUpTime}.<br>
-                  Komentarz do odbioru: ${notReceived.pickUpComment}<br>
-                  Data utworzenia: ${notReceived.creationDate}<br>
+                  Data utworzenia: ${notReceived.creationDate}
                 </div>
               </div>
             </li>
@@ -68,17 +64,13 @@
           <c:forEach items="${received}" var="received">
             <li>
               <div class="col">
-                <div class="title">${received.quantity} worków zawierających
-                  <c:forEach items="${received.categoriesNames}" var="category">${category}, </c:forEach>
-                  dla fundacji <c:forEach items="${institutions}" var="institution">
-                    <c:if test="${institution.id == received.institution}">"${institution.name}".</c:if></c:forEach>
-                    <%--                  <a href="/admin/adminCRUD/update/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Edytuj</a>--%>
-                    <%--                  <a href="/admin/adminCRUD/delete/<c:out value="${admin.id}"/>" class="btn btn--small btn--highlighted">Usuń</a>--%>
+                <div class="title">${received.quantity} worki dla
+                  <c:forEach items="${institutions}" var="institution">
+                    <c:if test="${institution.id == received.institution}">"${institution.name}".</c:if>
+                  </c:forEach>
+                  <a href="/donation/details/<c:out value="${received.id}"/>" class="btn btn--small btn--highlighted">Szczegóły</a>
                 </div>
                 <div class="subtitle">
-                  Odbiór w ${received.city} ${received.zipCode} na ulicy ${received.street}.<br>
-                  Do odebrania dnia ${received.pickUpDate} o godzinie ${received.pickUpTime}.<br>
-                  Komentarz do odbioru: ${received.pickUpComment}<br>
                   Data utworzenia: ${received.creationDate}<br>
                   Data odebrania: ${received.confirmedPickUpDate}
                 </div>
