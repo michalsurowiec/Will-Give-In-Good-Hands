@@ -44,15 +44,31 @@ public class DonationController {
 
     @GetMapping(path = "/details/{id}")
     private String donationDetails(@PathVariable("id") Long id, @AuthenticationPrincipal CurrentUser currentUser, Model model){
-        String redirect = "access-denied";
-        for (DonationDto donationDtoEach : donationService.findDonationsByUserId(currentUser.getUser().getId())){
-            if (donationDtoEach.getId().equals(id)){
-                model.addAttribute("donation", donationDtoEach);
-                model.addAttribute("institutions", institutionService.findAll());
-                redirect = "donation-details";
-            }
+        String redirect = "";
+        if (isDonationBelongingToUser(id, currentUser.getUser().getId())){
+            model.addAttribute("donation", donationService.findDonationById(id));
+            model.addAttribute("institutions", institutionService.findAll());
+            redirect = "donation-details";
+        } else {
+            redirect = "access-denied";
         }
         return redirect;
+    }
+
+    @GetMapping(path = "/confirm/{id}")
+    private String confirmDonationPickUp(@PathVariable("id") Long id, @AuthenticationPrincipal CurrentUser currentUser){
+        return "access-denied";
+    }
+
+    private boolean isDonationBelongingToUser(Long donationId, Long userId){
+        boolean result = false;
+        for (DonationDto donationDtoEach : donationService.findDonationsByUserId(userId)){
+            if (donationDtoEach.getId().equals(donationId)){
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
 }
