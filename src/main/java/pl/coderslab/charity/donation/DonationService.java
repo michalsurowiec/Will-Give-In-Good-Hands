@@ -9,6 +9,7 @@ import pl.coderslab.charity.status.StatusRepository;
 import pl.coderslab.charity.user.User;
 import pl.coderslab.charity.user.UserRepository;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -73,6 +74,18 @@ public class DonationService {
 
     public DonationDto findDonationById(Long id){
         return new DonationDto(donationRepository.findById(id).get());
+    }
+
+    public void changeDonationStatus(Long donationId, String status){
+        Donation donation = donationRepository.findById(donationId).get();
+        donation.setStatus(statusRepository.findByName(status));
+        donationRepository.save(donation);
+    }
+
+    public void setConfirmedPickUpDate(Long donationId){
+        Donation donation = donationRepository.findById(donationId).get();
+        donation.setConfirmedPickUpDate(LocalDate.now().plusDays(1));
+        donationRepository.save(donation);
     }
 
 }

@@ -57,7 +57,15 @@ public class DonationController {
 
     @GetMapping(path = "/confirm/{id}")
     private String confirmDonationPickUp(@PathVariable("id") Long id, @AuthenticationPrincipal CurrentUser currentUser){
-        return "access-denied";
+        String redirect = "";
+        if (isDonationBelongingToUser(id, currentUser.getUser().getId())){
+            donationService.changeDonationStatus(id, "Odebrane");
+            donationService.setConfirmedPickUpDate(id);
+            redirect = "redirect:/donation/details/" + id;
+        } else {
+            redirect = "access-denied";
+        }
+        return redirect;
     }
 
     private boolean isDonationBelongingToUser(Long donationId, Long userId){

@@ -37,6 +37,11 @@
           Data odebrania: ${donation.confirmedPickUpDate}
           </c:if>
         </p>
+        <c:if test="${donation.status == 'Nieodebrane'}">
+          <p>
+            <a href="/donation/confirm/<c:out value="${donation.id}"/>" class="btn btn--small btn--highlighted">Potwierdź odbiór</a>
+          </p>
+        </c:if>
         <a href="/user/main" class="btn btn--large btn--highlighted">Powrót</a>
       </div>
     </section>
