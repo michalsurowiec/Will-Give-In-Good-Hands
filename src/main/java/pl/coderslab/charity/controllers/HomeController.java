@@ -1,11 +1,10 @@
 package pl.coderslab.charity.controllers;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.CurrentUser;
 import pl.coderslab.charity.donation.DonationService;
+import pl.coderslab.charity.email.EmailService;
 import pl.coderslab.charity.institution.InstitutionService;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
@@ -17,11 +16,13 @@ public class HomeController {
     private InstitutionService institutionService;
     private DonationService donationService;
     private UserService userService;
+    private EmailService emailService;
 
-    public HomeController(InstitutionService institutionService, DonationService donationService, UserService userService) {
+    public HomeController(InstitutionService institutionService, DonationService donationService, UserService userService, EmailService emailService) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
+        this.emailService = emailService;
     }
 
     @RequestMapping("/")
@@ -41,6 +42,7 @@ public class HomeController {
     @PostMapping(path = "/register")
     public String saveUser(@ModelAttribute("user") UserDto userDto){
         userService.saveUser(userDto, "ROLE_USER");
+        emailService.sendRegisterConfirmation(userDto.getEmail());
         return "register-confirmation";
     }
 
