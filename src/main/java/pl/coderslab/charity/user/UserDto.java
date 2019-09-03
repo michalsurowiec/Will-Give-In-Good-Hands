@@ -16,6 +16,7 @@ public class UserDto {
     private String name;
     private String surname;
     private List<Long> rolesId = new ArrayList<>();
+    private List<String> rolesName = new ArrayList<>();
 //    private List<Long> donationsId = new ArrayList<>();
 
     public UserDto() {
@@ -29,6 +30,7 @@ public class UserDto {
         this.surname = user.getSurname();
         for (Role role : user.getRoles()){
             this.rolesId.add(role.getId());
+            this.rolesName.add(role.getName());
         }
 //        for (Donation donation : user.getDonations()){
 //            this.donationsId.add(donation.getId());

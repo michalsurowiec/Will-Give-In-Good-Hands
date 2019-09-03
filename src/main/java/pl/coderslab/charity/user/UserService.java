@@ -9,6 +9,7 @@ import pl.coderslab.charity.role.RoleRepository;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,17 +62,14 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public void blockUser(Long id){
+    public void changeUserRole(Long id, List<String> rolesNames){
         User user = userRepository.findById(id).get();
-        user.getRoles().remove(roleRepository.findByName("ROLE_USER"));
-        user.getRoles().add(roleRepository.findByName("ROLE_BANNED"));
+        Set<Role> roles = new HashSet<>();
+        for (String roleName : rolesNames){
+            roles.add(roleRepository.findByName(roleName));
+        }
+        user.setRoles(roles);
         userRepository.save(user);
     }
 
-    public void unblockUser(Long id){
-        User user = userRepository.findById(id).get();
-        user.getRoles().remove(roleRepository.findByName("ROLE_BANNED"));
-        user.getRoles().add(roleRepository.findByName("ROLE_USER"));
-        userRepository.save(user);
-    }
 }

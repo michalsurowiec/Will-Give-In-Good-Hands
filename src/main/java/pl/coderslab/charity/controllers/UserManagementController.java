@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -45,13 +46,17 @@ public class UserManagementController {
 
     @GetMapping(path = "/block/{id}")
     public String blockUser(@PathVariable(name = "id") Long id){
-        userService.blockUser(id);
+        List<String> rolesNames = new ArrayList<>();
+        rolesNames.add("ROLE_BANNED");
+        userService.changeUserRole(id, rolesNames);
         return "redirect:/admin/userCRUD/main";
     }
 
     @GetMapping(path = "/unblock/{id}")
     public String unblockUser(@PathVariable(name = "id") Long id){
-        userService.unblockUser(id);
+        List<String> rolesNames = new ArrayList<>();
+        rolesNames.add("ROLE_USER");
+        userService.changeUserRole(id, rolesNames);
         return "redirect:/admin/userCRUD/main";
     }
 
