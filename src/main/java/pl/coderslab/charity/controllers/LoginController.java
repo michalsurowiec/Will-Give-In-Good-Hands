@@ -39,7 +39,8 @@ public class LoginController
         for (GrantedAuthority grantedAuthority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
             if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")){
                 redirect = "admin-main-page";
-            } else if (grantedAuthority.getAuthority().equals("ROLE_USER")){
+            } else if (grantedAuthority.getAuthority().equals("ROLE_USER")
+                    || grantedAuthority.getAuthority().equals("ROLE_UNAUTHORISED")){
                 redirect = "redirect:/user/main";
             }
         }
