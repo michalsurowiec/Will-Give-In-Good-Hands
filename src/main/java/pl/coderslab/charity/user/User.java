@@ -23,4 +23,5 @@ public class User {
     private Set<Role> roles;
     @OneToMany(mappedBy = "user")
     private Set<Donation> donations;
+    private String authenticationToken;
 }

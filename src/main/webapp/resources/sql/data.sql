@@ -2,13 +2,13 @@ INSERT INTO category VALUES (null, 'ubrania, które nadają się do ponownego u�
 
 INSERT INTO institution VALUES (null, 'Pomoc dzieciom z ubogich rodzin.', 'Dbam o Zdrowie'), (null, 'Pomoc wybudzaniu dzieci ze śpiączki.', 'A kogo'), (null, 'Pomoc osobom znajdującym się w trudnej sytuacji życiowej.', 'Dla dzieci'), (null, 'Pomoc dla osób nie posiadających miejsca zamieszkania', 'Bez domu')
 
-INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN'), (null, 'ROLE_BANNED')
+INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN'), (null, 'ROLE_BANNED'), (null, 'ROLE_UNREGISTERED')
 
 # TODO delete information about passwords after everything is done
 
 # michal@o2.pl password - 123
 # kamil@o2.pl password - 123
-INSERT INTO user VALUES (null, 'michal@o2.pl', 'Michał', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec'), (null, 'kamil@o2.pl', 'Kamil', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec')
+INSERT INTO user VALUES (null, 'c6efccbb-b128-4310-bd88-9a94b793d1bb', 'michal@o2.pl', 'Michał', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec'), (null, 'd0334faf-f26b-4b54-8b59-f8887ee34378', 'kamil@o2.pl', 'Kamil', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec')
 
 INSERT INTO status VALUES (null, 'Nieodebrane'), (null, 'Odebrane')
 
