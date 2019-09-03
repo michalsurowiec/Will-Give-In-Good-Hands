@@ -1,12 +1,7 @@
-<img alt="Logo" src="http://coderslab.pl/svg/logo-coderslab.svg" width="400">
+# Will-Give-In-Good-Hands
+This is a charrity website, where users can send donations of physical goods to institutions of their choosing. 
+Main functionality of this webiste is to simplify donating process by giving users form with detailed information such as location and time of delivery. This will help institution to receive this delivery.
+Project is realised basing on templates delivered by CodersLab.
 
-
-Przed przystąpieniem do pracy  przeczytaj poniższe wskazówki.
-## Jak zacząć?
-
-1. Zaimportuj projekt jako projekt `Maven`, wg poniższych wskazówek:
-
-	* W `IntelliJ` wybieramy: `File –> New –> Project from Existing Sources...`
-	* Wskazujemy lokalizację katalogu ze sklonowanym projektem i zatwierdzamy.
-	* Następnie w nowym oknie wybieramy: `Import project from external model` i wskazujemy `Maven`
-	* Wybieramy kolejno opcje: `Next –> Next –> Next –> Finish`
+## Technologies
+In this project I used Hibernate and Spring (Boot, Data, Security) framework.
