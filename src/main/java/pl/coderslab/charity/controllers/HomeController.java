@@ -41,7 +41,7 @@ public class HomeController {
 
     @PostMapping(path = "/register")
     public String saveUser(@ModelAttribute("user") UserDto userDto){
-        userService.saveUser(userDto, "ROLE_USER");
+        userService.saveUser(userDto, "ROLE_UNAUTHORISED");
         emailService.sendRegisterConfirmation(userDto.getEmail());
         return "register-confirmation";
     }

@@ -2,7 +2,7 @@ INSERT INTO category VALUES (null, 'ubrania, które nadają się do ponownego u�
 
 INSERT INTO institution VALUES (null, 'Pomoc dzieciom z ubogich rodzin.', 'Dbam o Zdrowie'), (null, 'Pomoc wybudzaniu dzieci ze śpiączki.', 'A kogo'), (null, 'Pomoc osobom znajdującym się w trudnej sytuacji życiowej.', 'Dla dzieci'), (null, 'Pomoc dla osób nie posiadających miejsca zamieszkania', 'Bez domu')
 
-INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN'), (null, 'ROLE_BANNED'), (null, 'ROLE_UNREGISTERED')
+INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN'), (null, 'ROLE_BANNED'), (null, 'ROLE_UNAUTHORISED')
 
 # TODO delete information about passwords after everything is done
 
