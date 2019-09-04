@@ -33,6 +33,7 @@ public class UserService {
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
         user.setRoles(new HashSet<Role>(Arrays.asList(roleRepository.findByName(role))));
+        user.setAuthenticationToken(userDto.getAuthenticationToken());
         userRepository.save(user);
     }
 

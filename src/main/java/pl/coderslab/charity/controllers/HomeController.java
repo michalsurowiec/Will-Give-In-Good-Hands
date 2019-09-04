@@ -9,6 +9,8 @@ import pl.coderslab.charity.institution.InstitutionService;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
+import java.util.UUID;
+
 
 @Controller
 public class HomeController {
@@ -41,6 +43,8 @@ public class HomeController {
 
     @PostMapping(path = "/register")
     public String saveUser(@ModelAttribute("user") UserDto userDto){
+        UUID uuid = UUID.randomUUID();
+        userDto.setAuthenticationToken(uuid.toString());
         userService.saveUser(userDto, "ROLE_UNAUTHORISED");
         emailService.sendRegisterConfirmation(userDto.getEmail());
         return "register-confirmation";

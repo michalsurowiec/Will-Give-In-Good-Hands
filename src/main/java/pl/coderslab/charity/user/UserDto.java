@@ -18,6 +18,7 @@ public class UserDto {
     private List<Long> rolesId = new ArrayList<>();
     private List<String> rolesName = new ArrayList<>();
 //    private List<Long> donationsId = new ArrayList<>();
+    private String authenticationToken;
 
     public UserDto() {
     }
@@ -35,5 +36,6 @@ public class UserDto {
 //        for (Donation donation : user.getDonations()){
 //            this.donationsId.add(donation.getId());
 //        }
+        this.authenticationToken = user.getAuthenticationToken();
     }
 }
