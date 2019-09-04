@@ -13,11 +13,14 @@ public class EmailService {
         this.emailSender = emailSender;
     }
 
-    public void sendRegisterConfirmation(String toWhom){
+    public void sendRegisterConfirmation(String toWhom, String authenticationToken, String pathContext){
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(toWhom);
-        simpleMailMessage.setSubject("TEST");
-        simpleMailMessage.setText("Właśnie się zarejestrowałeś i otrzymałeś tego maila!");
+        simpleMailMessage.setSubject("Potwierdzenie rejestracji");
+        simpleMailMessage.setText("Dziękujemy za zarejestrowanie się na naszej stronie!\n" +
+                "W celu aktywowanie swojego konta skopiuj poniższy link do przeglądarki i go otwórz. \n" +
+                "Jeżeli nie rejestrowałeś się u nas zignoruj wiadomość\n" +
+                pathContext.replace("register", "confirm/") + authenticationToken);
         emailSender.send(simpleMailMessage);
     }
 }

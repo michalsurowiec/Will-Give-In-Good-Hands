@@ -9,6 +9,9 @@ import pl.coderslab.charity.institution.InstitutionService;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.net.URL;
 import java.util.UUID;
 
 
@@ -42,11 +45,11 @@ public class HomeController {
     }
 
     @PostMapping(path = "/register")
-    public String saveUser(@ModelAttribute("user") UserDto userDto){
+    public String saveUser(@ModelAttribute("user") UserDto userDto, HttpServletRequest request){
         UUID uuid = UUID.randomUUID();
         userDto.setAuthenticationToken(uuid.toString());
         userService.saveUser(userDto, "ROLE_UNAUTHORISED");
-        emailService.sendRegisterConfirmation(userDto.getEmail());
+        emailService.sendRegisterConfirmation(userDto.getEmail(), userDto.getAuthenticationToken(), request.getRequestURL().toString());
         return "register-confirmation";
     }
 

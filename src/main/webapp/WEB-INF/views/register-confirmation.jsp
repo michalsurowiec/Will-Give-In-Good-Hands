@@ -17,7 +17,8 @@
 
       <div class="slogan container container--90">
           <h2>
-            Dziękujemy za zarejestrowanie konta.
+            Dziękujemy za zarejestrowanie konta.<br>
+            Na maila przesłano link aktywacyjny.
           </h2>
       </div>
     </header>
