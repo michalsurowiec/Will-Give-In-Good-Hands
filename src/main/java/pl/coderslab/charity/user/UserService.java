@@ -6,10 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.role.Role;
 import pl.coderslab.charity.role.RoleRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -71,6 +68,20 @@ public class UserService {
         }
         user.setRoles(roles);
         userRepository.save(user);
+    }
+
+    public boolean activateUser(String authenticationToken){
+        boolean result = false;
+        List<User> usersUnauthorised = userRepository.findAllByRolesEquals(roleRepository.findByName("ROLE_UNAUTHORISED"));
+        for (User userEach : usersUnauthorised){
+            if (userEach.getAuthenticationToken().equals(authenticationToken)){
+                List<String> rolesNames = new ArrayList<>();
+                rolesNames.add("ROLE_USER");
+                changeUserRole(userEach.getId(), rolesNames);
+                result = true;
+            }
+        }
+        return result;
     }
 
 }

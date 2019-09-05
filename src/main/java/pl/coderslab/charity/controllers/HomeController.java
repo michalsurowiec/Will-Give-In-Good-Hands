@@ -53,4 +53,15 @@ public class HomeController {
         return "register-confirmation";
     }
 
+    @GetMapping(path = "/confirm/{token}")
+    public String confirmUser(@PathVariable("token") String authenticationToken){
+        String redirect = "";
+        if (userService.activateUser(authenticationToken)){
+            redirect = "activation-successful";
+        } else {
+            redirect = "activation-unsuccessful";
+        }
+        return redirect;
+    }
+
 }
