@@ -23,4 +23,12 @@ public class EmailService {
                 pathContext.replace("register", "confirm/") + authenticationToken);
         emailSender.send(simpleMailMessage);
     }
+
+    public void sendChangingPasswordForm(String toWhom){
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setTo(toWhom);
+        simpleMailMessage.setSubject("Zmiana hasła");
+        simpleMailMessage.setText("Test zmiany hasła");
+        emailSender.send(simpleMailMessage);
+    }
 }

@@ -64,4 +64,16 @@ public class HomeController {
         return redirect;
     }
 
+    @GetMapping(path = "/remindPassword")
+    public String remindPasswordForm(Model model){
+        model.addAttribute("user", new UserDto());
+        return "form-email-changing-password";
+    }
+
+    @PostMapping(path = "/remindPassword")
+    public String sendChangingPasswordInstructionsOnEmail(@ModelAttribute("user") UserDto userDto){
+        emailService.sendChangingPasswordForm(userDto.getEmail());
+        return "redirect:/";
+    }
+
 }
