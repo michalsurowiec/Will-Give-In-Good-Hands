@@ -11,9 +11,9 @@ public class CharityApplication {
         SpringApplication.run(CharityApplication.class, args);
     }
 
-//    @Bean
-//    public NotificationCreator notificationCreator(){
-//        return new NotificationCreator();
-//    }
+    @Bean
+    public NotificationCreator notificationCreator(){
+        return new NotificationCreator();
+    }
 
 }
