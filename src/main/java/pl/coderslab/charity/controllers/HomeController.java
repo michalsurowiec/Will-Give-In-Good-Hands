@@ -1,6 +1,5 @@
 package pl.coderslab.charity.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +21,14 @@ public class HomeController {
     private DonationService donationService;
     private UserService userService;
     private EmailService emailService;
-//    private NotificationCreator notificationCreator;
+    private NotificationCreator notificationCreator;
 
-    public HomeController(InstitutionService institutionService, DonationService donationService, UserService userService, EmailService emailService) {
+    public HomeController(InstitutionService institutionService, DonationService donationService, UserService userService, EmailService emailService, NotificationCreator notificationCreator) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
         this.emailService = emailService;
+        this.notificationCreator = notificationCreator;
     }
 
     @RequestMapping("/")
@@ -46,23 +46,25 @@ public class HomeController {
     }
 
     @PostMapping(path = "/register")
-    public String saveUser(@ModelAttribute("user") UserDto userDto, HttpServletRequest request){
+    public String saveUser(@ModelAttribute("user") UserDto userDto, HttpServletRequest request, Model model){
         UUID uuid = UUID.randomUUID();
         userDto.setAuthenticationToken(uuid.toString());
         userService.saveUser(userDto, "ROLE_UNAUTHORISED");
         emailService.sendRegisterConfirmation(userDto.getEmail(), userDto.getAuthenticationToken(), request.getRequestURL().toString());
-        return "register-confirmation";
+        String message = "Dziękujemy za zarejestrowanie konta.<br> " +
+                "Na maila przesłano link aktywacyjny.";
+        return notificationCreator.showNotification(message, model);
     }
 
     @GetMapping(path = "/confirm/{token}")
-    public String confirmUser(@PathVariable("token") String authenticationToken){
-        String redirect = "";
+    public String confirmUser(@PathVariable("token") String authenticationToken, Model model){
+        String message = "";
         if (userService.activateUser(authenticationToken)){
-            redirect = "activation-successful";
+            message = "Konto zostało aktywowane!";
         } else {
-            redirect = "activation-unsuccessful";
+            message = "Link wygasł!";
         }
-        return redirect;
+        return notificationCreator.showNotification(message, model);
     }
 
     @GetMapping(path = "/remindPassword")
@@ -76,14 +78,11 @@ public class HomeController {
         String message = "";
         if (userService.isUserExisting(userDto.getEmail())){
             emailService.sendChangingPasswordForm(userDto.getEmail());
-//            message = "Wysłano na maila instrukcje do zmiany hasła!";
-            model.addAttribute("notification", "Wysłano na maila instrukcje do zmiany hasła!");
+            message = "Wysłano na maila instrukcje do zmiany hasła!";
         } else {
-//            message = "Nie ma użytkownika o takim mailu!";
-            model.addAttribute("notification", "Nie ma użytkownika o takim mailu!");
+            message = "Nie ma użytkownika o takim mailu!";
         }
-//        return notificationCreator.showNotification(message, model);
-        return "test";
+        return notificationCreator.showNotification(message, model);
     }
 
 }
