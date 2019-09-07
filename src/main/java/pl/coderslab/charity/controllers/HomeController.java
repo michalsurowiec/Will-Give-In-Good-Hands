@@ -1,8 +1,10 @@
 package pl.coderslab.charity.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.NotificationCreator;
 import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.email.EmailService;
 import pl.coderslab.charity.institution.InstitutionService;
@@ -10,8 +12,6 @@ import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.net.URL;
 import java.util.UUID;
 
 
@@ -22,6 +22,7 @@ public class HomeController {
     private DonationService donationService;
     private UserService userService;
     private EmailService emailService;
+//    private NotificationCreator notificationCreator;
 
     public HomeController(InstitutionService institutionService, DonationService donationService, UserService userService, EmailService emailService) {
         this.institutionService = institutionService;
@@ -71,9 +72,18 @@ public class HomeController {
     }
 
     @PostMapping(path = "/remindPassword")
-    public String sendChangingPasswordInstructionsOnEmail(@ModelAttribute("user") UserDto userDto){
-        emailService.sendChangingPasswordForm(userDto.getEmail());
-        return "redirect:/";
+    public String sendChangingPasswordInstructionsOnEmail(@ModelAttribute("user") UserDto userDto, Model model){
+        String message = "";
+        if (userService.isUserExisting(userDto.getEmail())){
+            emailService.sendChangingPasswordForm(userDto.getEmail());
+//            message = "Wysłano na maila instrukcje do zmiany hasła!";
+            model.addAttribute("notification", "Wysłano na maila instrukcje do zmiany hasła!");
+        } else {
+//            message = "Nie ma użytkownika o takim mailu!";
+            model.addAttribute("notification", "Nie ma użytkownika o takim mailu!");
+        }
+//        return notificationCreator.showNotification(message, model);
+        return "test";
     }
 
 }
