@@ -85,4 +85,10 @@ public class HomeController {
         return notificationCreator.showNotification(message, model);
     }
 
+    @GetMapping(path = "/changePassword")
+    public String changePasswordForm(Model model){
+        model.addAttribute("user", new UserDto());
+        return "form-change-password";
+    }
+
 }

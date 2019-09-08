@@ -28,7 +28,9 @@ public class EmailService {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(toWhom);
         simpleMailMessage.setSubject("Zmiana hasła");
-        simpleMailMessage.setText("Test zmiany hasła");
+        simpleMailMessage.setText("Wysyłamy tego maila ponieważ poprosiłeś o zmianę hasła. Jeżeli nie zrobiłeś tego to zignoruj tą wiadomość. \n" +
+                "W celu zmiany hasła skopiuj poniższy link do przeglądarki i go otwórz. \n" +
+                "/changePassword");
         emailSender.send(simpleMailMessage);
     }
 }
