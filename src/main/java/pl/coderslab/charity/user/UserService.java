@@ -97,4 +97,8 @@ public class UserService {
         return authenticationToken;
     }
 
+    public Optional<User> findUserByAuthenticationToken(String authenticationToken){
+        return userRepository.findByAuthenticationToken(authenticationToken);
+    }
+
 }

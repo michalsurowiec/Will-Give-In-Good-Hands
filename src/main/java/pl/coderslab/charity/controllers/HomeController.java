@@ -91,10 +91,16 @@ public class HomeController {
         return notificationCreator.showNotification(message, model);
     }
 
-    @GetMapping(path = "/changePassword")
-    public String changePasswordForm(Model model){
-        model.addAttribute("user", new UserDto());
-        return "form-change-password";
+    @GetMapping(path = "/changePassword/{token}")
+    public String changePasswordForm(Model model, @PathVariable("token") String authenticationToken){
+        if (userService.findUserByAuthenticationToken(authenticationToken).isPresent()){
+            UserDto user = new UserDto();
+            user.setAuthenticationToken(authenticationToken);
+            model.addAttribute("user", user);
+            return "form-change-password";
+        } else {
+            return notificationCreator.showNotification("Link wygasł!", model);
+        }
     }
 
 }
