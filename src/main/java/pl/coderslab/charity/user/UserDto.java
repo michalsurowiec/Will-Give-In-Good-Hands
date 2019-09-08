@@ -13,6 +13,7 @@ public class UserDto {
     private Long id;
     private String email;
     private String password;
+    private String secondPassword;
     private String name;
     private String surname;
     private List<Long> rolesId = new ArrayList<>();
@@ -37,5 +38,9 @@ public class UserDto {
 //            this.donationsId.add(donation.getId());
 //        }
         this.authenticationToken = user.getAuthenticationToken();
+    }
+
+    public boolean comparePasswords(){
+        return password.equals(secondPassword);
     }
 }
