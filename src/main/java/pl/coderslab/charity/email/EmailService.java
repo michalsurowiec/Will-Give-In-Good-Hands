@@ -24,13 +24,13 @@ public class EmailService {
         emailSender.send(simpleMailMessage);
     }
 
-    public void sendChangingPasswordForm(String toWhom){
+    public void sendChangingPasswordForm(String toWhom, String authenticationToken, String pathContext){
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(toWhom);
         simpleMailMessage.setSubject("Zmiana hasła");
         simpleMailMessage.setText("Wysyłamy tego maila ponieważ poprosiłeś o zmianę hasła. Jeżeli nie zrobiłeś tego to zignoruj tą wiadomość. \n" +
                 "W celu zmiany hasła skopiuj poniższy link do przeglądarki i go otwórz. \n" +
-                "/changePassword");
+                pathContext.replace("remindPassword", "changePassword/") + authenticationToken);
         emailSender.send(simpleMailMessage);
     }
 }

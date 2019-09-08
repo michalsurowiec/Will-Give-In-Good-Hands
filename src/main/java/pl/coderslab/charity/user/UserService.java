@@ -88,4 +88,13 @@ public class UserService {
        return userRepository.findByEmail(email).isPresent();
     }
 
+    public String setUserAuthenticationToken(String email){
+        UUID uuid = UUID.randomUUID();
+        String authenticationToken = uuid.toString();
+        User user = userRepository.findByEmail(email).get();
+        user.setAuthenticationToken(authenticationToken);
+        userRepository.save(user);
+        return authenticationToken;
+    }
+
 }

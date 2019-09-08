@@ -50,7 +50,10 @@ public class HomeController {
         UUID uuid = UUID.randomUUID();
         userDto.setAuthenticationToken(uuid.toString());
         userService.saveUser(userDto, "ROLE_UNAUTHORISED");
-        emailService.sendRegisterConfirmation(userDto.getEmail(), userDto.getAuthenticationToken(), request.getRequestURL().toString());
+        emailService.sendRegisterConfirmation(
+                userDto.getEmail(),
+                userDto.getAuthenticationToken(),
+                request.getRequestURL().toString());
         String message = "Dziękujemy za zarejestrowanie konta.<br> " +
                 "Na maila przesłano link aktywacyjny.";
         return notificationCreator.showNotification(message, model);
@@ -74,10 +77,13 @@ public class HomeController {
     }
 
     @PostMapping(path = "/remindPassword")
-    public String sendChangingPasswordInstructionsOnEmail(@ModelAttribute("user") UserDto userDto, Model model){
+    public String sendChangingPasswordInstructionsOnEmail(@ModelAttribute("user") UserDto userDto, Model model, HttpServletRequest request){
         String message = "";
         if (userService.isUserExisting(userDto.getEmail())){
-            emailService.sendChangingPasswordForm(userDto.getEmail());
+            emailService.sendChangingPasswordForm(
+                    userDto.getEmail(),
+                    userService.setUserAuthenticationToken(userDto.getEmail()),
+                    request.getRequestURL().toString());
             message = "Wysłano na maila instrukcje do zmiany hasła!";
         } else {
             message = "Nie ma użytkownika o takim mailu!";
