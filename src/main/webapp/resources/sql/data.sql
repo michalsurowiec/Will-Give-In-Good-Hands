@@ -8,7 +8,7 @@ INSERT INTO role VALUES (null, 'ROLE_USER'), (null, 'ROLE_ADMIN'), (null, 'ROLE_
 
 # michal@o2.pl password - 123
 # kamil@o2.pl password - 123
-INSERT INTO user VALUES (null, 'c6efccbb-b128-4310-bd88-9a94b793d1bb', 'michal@o2.pl', 'Michał', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec'), (null, 'd0334faf-f26b-4b54-8b59-f8887ee34378', 'kamil@o2.pl', 'Kamil', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec')
+INSERT INTO user VALUES (null, 'c6efccbb-b128-4310-bd88-9a94b793d1bb', 'michalsurowiec94@o2.pl', 'Michał', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec'), (null, 'd0334faf-f26b-4b54-8b59-f8887ee34378', 'kamil@o2.pl', 'Kamil', '$2a$10$k/5lxkDRWVsLDXqD5inwOe5ANN/9jlwPC38POSCHlb1spbgGslyny', 'Surowiec')
 
 INSERT INTO status VALUES (null, 'Nieodebrane'), (null, 'Odebrane')
 
