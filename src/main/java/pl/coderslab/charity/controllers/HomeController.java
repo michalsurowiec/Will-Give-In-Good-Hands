@@ -103,4 +103,14 @@ public class HomeController {
         }
     }
 
+    @PostMapping(path = "changePassword")
+    public String saveChangedPassword(@ModelAttribute("user") UserDto userDto, Model model){
+        if (userDto.getPassword().equals(userDto.getSecondPassword())){
+            userService.updateUserPassword(userDto);
+            return notificationCreator.showNotification("Zmieniono pomyślnie hasło!", model);
+        } else {
+            return notificationCreator.showNotification("Wpisane hasła muszą być te same!", model);
+        }
+    }
+
 }
