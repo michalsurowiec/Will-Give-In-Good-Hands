@@ -4,6 +4,7 @@ import lombok.Data;
 import pl.coderslab.charity.donation.Donation;
 import pl.coderslab.charity.role.Role;
 
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,8 @@ public class UserDto {
 
     private Long id;
     private String email;
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W])(?=.*[\\d])(?=.{8,}).*$",
+            message = "Niepoprawne hasło! Upewnij się, że wpisałeś zgodnie z instrukcją")
     private String password;
     private String secondPassword;
     private String name;

@@ -34,6 +34,7 @@
           </div>
           <div class="form-group form-group--inline">
             <label>Hasło:<form:password path="password"/></label>
+            <br><form:errors path="password"/><br>
           </div>
         </div>
 <%--        TODO Add a double check of password during registration--%>

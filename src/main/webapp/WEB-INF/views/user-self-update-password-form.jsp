@@ -25,6 +25,7 @@
         <div class="form-section form-section--columns">
           <div class="form-group">
             Hasło: <form:password path="password"/>
+            <br><form:errors path="password"/><br>
           </div>
         </div>
         <%--        TODO Add a double check of password during registration--%>

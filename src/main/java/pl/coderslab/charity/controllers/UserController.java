@@ -3,6 +3,7 @@ package pl.coderslab.charity.controllers;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.CurrentUser;
 import pl.coderslab.charity.category.CategoryService;
@@ -12,6 +13,7 @@ import pl.coderslab.charity.institution.InstitutionService;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -74,10 +76,14 @@ public class UserController {
     }
 
     @PostMapping(path = "/updatePassword")
-    public String savePassword(@ModelAttribute("user") UserDto userDto, @AuthenticationPrincipal CurrentUser currentUser){
-        userDto.setId(currentUser.getUser().getId());
-        userService.updateUserPassword(userDto);
-        return "redirect:/user/main";
+    public String savePassword(@ModelAttribute("user") @Valid UserDto userDto, BindingResult bindingResult, @AuthenticationPrincipal CurrentUser currentUser){
+        if (bindingResult.hasErrors()){
+            return "user-self-update-password-form";
+        } else {
+            userDto.setId(currentUser.getUser().getId());
+            userService.updateUserPassword(userDto);
+            return "redirect:/user/main";
+        }
     }
 
 }

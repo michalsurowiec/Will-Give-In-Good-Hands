@@ -32,6 +32,7 @@
         </div>
         <div class="form-group">
           <form:password placeholder="Hasło" path="password"/>
+          <br><form:errors path="password"/><br>
         </div>
 <%--        TODO Add a double check of password during registration--%>
 <%--        <div class="form-group">--%>

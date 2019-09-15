@@ -26,6 +26,7 @@
         <div class="form-section form-section--columns">
           <div class="form-group form-group--inline">
             <label><form:input placeholder="Hasło" path="password"/></label>
+            <br><form:errors path="password"/><br>
           </div>
           <div class="form-group form-group--inline">
             <label><form:input placeholder="Powtórz hasło" path="secondPassword"/></label>

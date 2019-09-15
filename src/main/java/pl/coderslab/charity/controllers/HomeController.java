@@ -2,6 +2,7 @@ package pl.coderslab.charity.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.NotificationCreator;
 import pl.coderslab.charity.donation.DonationService;
@@ -11,6 +12,7 @@ import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.UUID;
 
 
@@ -46,17 +48,21 @@ public class HomeController {
     }
 
     @PostMapping(path = "/register")
-    public String saveUser(@ModelAttribute("user") UserDto userDto, HttpServletRequest request, Model model){
-        UUID uuid = UUID.randomUUID();
-        userDto.setAuthenticationToken(uuid.toString());
-        userService.saveUser(userDto, "ROLE_UNAUTHORISED");
-        emailService.sendRegisterConfirmation(
-                userDto.getEmail(),
-                userDto.getAuthenticationToken(),
-                request.getRequestURL().toString());
-        String message = "Dziękujemy za zarejestrowanie konta.<br> " +
-                "Na maila przesłano link aktywacyjny.";
-        return notificationCreator.showNotification(message, model);
+    public String saveUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult bindingResult, HttpServletRequest request, Model model){
+        if (bindingResult.hasErrors()){
+            return "register";
+        } else {
+            UUID uuid = UUID.randomUUID();
+            userDto.setAuthenticationToken(uuid.toString());
+            userService.saveUser(userDto, "ROLE_UNAUTHORISED");
+            emailService.sendRegisterConfirmation(
+                    userDto.getEmail(),
+                    userDto.getAuthenticationToken(),
+                    request.getRequestURL().toString());
+            String message = "Dziękujemy za zarejestrowanie konta.<br> " +
+                    "Na maila przesłano link aktywacyjny.";
+            return notificationCreator.showNotification(message, model);
+        }
     }
 
     @GetMapping(path = "/confirm/{token}")
@@ -104,12 +110,16 @@ public class HomeController {
     }
 
     @PostMapping(path = "changePassword")
-    public String saveChangedPassword(@ModelAttribute("user") UserDto userDto, Model model){
-        if (userDto.getPassword().equals(userDto.getSecondPassword())){
-            userService.updateUserPassword(userDto);
-            return notificationCreator.showNotification("Zmieniono pomyślnie hasło!", model);
+    public String saveChangedPassword(@ModelAttribute("user") @Valid UserDto userDto, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()){
+            return "form-change-password";
         } else {
-            return notificationCreator.showNotification("Wpisane hasła muszą być te same!", model);
+            if (userDto.getPassword().equals(userDto.getSecondPassword())) {
+                userService.updateUserPassword(userDto);
+                return notificationCreator.showNotification("Zmieniono pomyślnie hasło!", model);
+            } else {
+                return notificationCreator.showNotification("Wpisane hasła muszą być te same!", model);
+            }
         }
     }
 

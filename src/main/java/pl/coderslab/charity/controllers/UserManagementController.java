@@ -2,10 +2,12 @@ package pl.coderslab.charity.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -36,12 +38,16 @@ public class UserManagementController {
     }
 
     @PostMapping(path = "/update")
-    public String saveUser(@ModelAttribute("user") UserDto user){
-        userService.updateUser(user);
-        if(!(user.getPassword().equals(""))){
-            userService.updateUserPassword(user);
+    public String saveUser(@ModelAttribute("user") @Valid UserDto user, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return "user-update-form";
+        } else {
+            userService.updateUser(user);
+            if(!(user.getPassword().equals(""))){
+                userService.updateUserPassword(user);
+            }
+            return "redirect:/admin/userCRUD/main";
         }
-        return "redirect:/admin/userCRUD/main";
     }
 
     @GetMapping(path = "/block/{id}")
